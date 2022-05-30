@@ -111,7 +111,9 @@ If this command fails despite having installed rustc, then it means that you hav
 #### 18. How do you go about uninstalling Rust from your machine?
 
 By entering the shell/cmd command:
-```$ rustup self uninstall
+```
+$ rustup self uninstall
+```
 
 
 Completed On: Saturday, April 30, 2022.
