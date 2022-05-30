@@ -201,7 +201,7 @@ $ cargo --version
 If you get a Cargo version number, it means you have Cargo installed, whereas you'll get an error if you do not have it installed.
 
 
-### 11. What files does the "cargo new project-name" generate?
+### 11. What files does the Cargo command "cargo new project-name" generate?
 
 Three files;
 - Cargo.toml
@@ -283,3 +283,476 @@ $ cargo build
 
 
 Completed On: Tuesday, May 3, 2022.
+
+
+##   VARIABLES AND MUTABILITY, DATA TYPES
+
+### 1. Variables in Rust are immutable by default. How can you make a mutable Rust variable?
+
+By using the keyword "mut" in your variable declaration, like this:
+```
+let mut variable-name = 5;
+```
+
+
+### 2. What syntax is used as a placeholder inside strings, when you plan to access a variable's value inside the string?
+
+{}
+For example, you use it like this:
+```
+  let a = 8;
+  println!("The value of variable a is: {}", a);
+```  
+Output: 
+The value of variable a is: 8
+
+
+### 3. How do you specify valid strings in Rust?
+
+With a pair of double quotes("..."), instead of single quote pairs ('...').
+
+
+### 4. How do you create a constant variable in Rust?
+
+By using the "const" keyword alongside a variable name written in all-caps, and annotating its data type.
+
+
+### 5. Give an example Rust constant variable declaration
+```
+  const THREE_HOUR_IN_SECONDS: u32 = 60 * 60 * 3;
+```  
+
+
+### 6. What is the validity period of a Rust constant variable?
+
+The entire time a Rust program runs. It seems to me that this means that they are not garbage collected.
+
+
+### 7. Take note of variable shadowing
+
+E.g,
+```
+  fn main() {
+    let spaces = "     ";
+    let spaces = spaces.len();
+    let a = 7;
+    let a = a + 1;
+    {
+      let a = a * 2; // 16
+      println!("The value of a in this inner scope is: {}", a);
+    }
+    println!("The value of a is: {}", a); // 8
+  }
+```  
+
+
+### 8. Take a look at this code;
+  let mut spaces = "    ";
+  spaces = spaces.len();
+..and decide if Rust lets you mutate types, as done here (from string to number)
+
+No, such operation would cause a compilation error
+
+
+### 9. Mention two data type subsets in Rust
+
+- scaler
+- compound
+
+
+### 10. What does the 'stdio()' code snippet, relative to 'io' mean?
+  io::stdin()
+..mean?
+
+It means "stdin" is an associated function that is implemented on type "io" that is being accessed.
+
+
+### 11. A scaler type represents a what?
+
+A single value.
+
+
+### 12. What are the four primary scaler types in Rust?
+
+- integers
+- foating point numbers
+- Booleans
+- characters
+
+
+### 13. List all the unsigned integer types available to you in Rust
+
+They are:
+- u8
+- u16
+- u32
+- u64
+- u128
+- usize (has a length arch)
+
+
+### 14. List all the signed integer types available to you in Rust
+
+They are:
+- i8
+- i16
+- i32
+- i64
+- i128
+- isize (has a arch variable-length)
+
+
+### 15. What is the difference between a signed integer and an unsigned integer type?
+
+A signed integer is usually used to represent and store negative numbers. Note that you can also store positive numbers using a signed integer type as well.
+Whereas, an unsigned integer type is used to represent and store positive numbers only.
+
+
+### 16. What is the range of possible numbers that a signed integer of a given type is able to store.
+
+Representing the bit length of the signed integer type with character 'n', we can calculate the range of values possible using the formula;
+  -(2^(n-1)) to 2^(n-1) - 1
+For example;
+i8 can store a range of..
+  -(2^(8-1)) to 2(^8-1) - 1
+  = -2(^7) to 2(^7) - 1
+    = -128 to 128 - 1
+      = -128 to 127 integer values.
+
+
+### 17. What is the range of possible numbers that an unsigned integer of a given type able to store.
+
+Representing the bit length of the signed integer type with character 'n', we can calculate the range of values possible using the formula;
+  0 to 2^n - 1
+For example;
+u8 can store a range of..
+  0 to 2^8 - 1
+    = 0 to 256 - 1
+      = 0 to 255 integer values.
+
+
+### 18. What does the "isize" and "usize" integer types depend on?
+
+The architecture of the computer your program is running on, which is denoted as "arch". For example, 64 bits if you're on a 64-bit architecture and 32 bits if you're on a 32-bit architecture.
+
+
+### 19. What separator can you use in the representation of integer values in Rust, that would be ignored by the Rust compiler, and not affect the literal value you specify?
+
+The underscore _
+With it, you can represent literal value 1000 either as 1000 or as 1_000. They both specify the same integer literal value.
+
+
+### 20. Write an example of a Decimal (base 10) integer literal value
+
+98_222
+
+
+### 21. Give an example of a Hex (base 16) integer literal value
+
+0xff
+
+
+### 22. Write out an example of a Octal (base 8) integer literal value
+
+0o77
+
+
+### 23. Give an example of a Binary (base 2) integer literal value
+
+0b1111_0000
+
+
+### 24. Write an example of a Byte (u8 only) integer literal value
+
+b'A'
+
+
+### 25. What do you do when you do not know which type of integer to use?
+
+Don't specify an integer type, which will cause your program to use Rust's default integer type of choice.
+
+
+### 26. What is Rust's default integer type of choice?
+
+i32
+
+
+### 27. In what primary situation would you use integer types isize or usize?
+
+When indexing some sort of collection.
+
+
+### 28. Explain what integer overflow is with an example illustration
+
+Let's say you have a variable of type u8 that can hold values between 0 and 255. Now, if you try to change the variable to a value outside of that range, such as 256, Integer overflow will occur.
+
+
+### 29. How does Rust react of integer overflow scenerios?
+
+In debug mode: Your program will panic at runtime and then exit with an error, when it checks your program for integer overflow.
+In release mode: It won't panic. Rather, two's complement wrapping occurs. For example, in the case of a u8, the value 256 becomes 0. In case of u8 with an acribed value 257, becomes 1.
+
+
+### 30. Relying on integer overflow's wrapping behavior is considered what?
+
+An error.
+
+
+### 31. What methods are provided by the Rust standard libray for primitive numeric types, to handle the possibility of overflow?
+
+- Wrap all modes with the..
+  wrapping_*
+..methods, such as..
+  wrapping_add
+- Return the..
+  None
+..value if there is overflow with the..
+  checked_* methods
+- Return the value and a boolean indicating whether there was overflow with the..
+  overflowing_*
+..methods
+Saturate at the value's minimum or maximum values with..
+  saturating_*
+methods.
+Learn more about these later.
+
+
+### 32. What floating-point types are available in Rust?
+
+f32 & f64
+
+
+### 33. What is default floating-point type used by Rust, provided you do not specify any?
+
+f64
+
+
+### 34. What is, or are the differences between f32 & f64?
+
+- Although they both have roughtly the same speed, f64 however has superior precision.
+- f32 is a single-precision float, whereas f64 has double precision.
+
+
+### 35. Are all floating point numbers signed or unsigned?
+
+They are signed.
+
+
+### 36. Floating-point numbers are represented according to what standard?
+
+The IEEE-754 standard.
+
+
+### 37. Demonstrate creating a variable with an annotated float integer data type
+
+Here:
+  fn main() {
+    let x: f32 = 3.0 // f32 data type variable
+    let y = 4.0 // f64 data type variable
+  }
+
+
+### 38. Demonstrate code that showcases some basic numeric (integer) operations you can perform with Rust
+```
+  fn main() {
+    // addition
+    let _sum = 5 + 10;
+
+    // subtraction
+    let _difference = 95.5 - 4.3;
+
+    // multiplication
+    let _product = 4 * 30;
+
+    // division
+    let _quotient = 56.7 / 32.2;
+    let _floored = 2 / 3; // Results in 0
+
+    // remainder
+    let _remainder = 43 % 5;
+
+    println!(
+        "addition: {} \ndifference: {} \nproduct: {} \nquotient: {} \nfloored: {} \nremainder: {}",
+        _sum, _difference, _product, _quotient, _floored, _remainder
+    )
+  }
+```  
+
+
+### 39. How do you specify a char (character) data type variable in Rust?
+
+By enclosing the character inside a pair of single quotes, like this:
+```
+  fn main() {
+    let c = 'z';
+    let z = 'Z';
+  }
+```  
+
+
+### 40. What is the byte size of the "char" data type in Rust?
+
+Four bytes.
+
+
+### 41. What does the "char" data type represent in Rust?
+
+Unicode Scaler Value.
+
+
+### 42. Mention sample characters that Rust's "char" data type can represent?
+
+- accented letters: Chinese, Japanese, Korean
+- emojis
+- zero-width spaces, as in: ''
+
+
+### 43. What is the range of Unicode Scaler Values in Rust?
+
+U+0000 to U+D7FFF
+and..
+&
+U+E0000 to U+10FFFF
+..inclusive.
+
+
+### 44. What are Compound types in Rust?
+
+They are a mechanism that allows you to group multiple values into one type.
+
+
+### 45. What are the two primitive compound types in Rust?
+
+- tuples
+- arrays
+
+
+### 46. What is a Rust tuple?
+
+A tuple is a compound type that gives you the means to group together a number of values of the same type only into one.
+It has a fixed length, so they cannot grow or shrink in size.
+
+
+### 47. Demonstrate code that creates a Rust tuple
+
+Here:
+```
+  fn main() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1); // creation of a tuple variable called 'tup'. Note that 'tup' here has annotated data types, but you don't have to do so all the time
+  }
+```  
+
+
+### 48. Demonstrate code that uses pattern matching to destructure a tuple's constituent values into separate variables
+
+Here:
+```
+  fn main() {
+    let tup = (500, 6.4, 1);
+    let (x, y, z) = tup;
+    println!("The value of y is: {}", y); // Outputs 6.4
+  }
+```  
+
+
+### 49. Demonstrate code that accesses a tuple's constituent values, using a period to acesss specific tuple indices, instead of pattern-matching based destructuring
+
+Here:
+```
+  fn main() {
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+    let five_hundred = x.0; // 500
+    let six_point_four = x.1; // 6.4
+    let one = x.2; // 1
+  }
+```  
+
+
+### 50. What is a 'unit type' in Rust?
+
+It is a tuple without any value, represented by..
+()
+
+
+### 51. What is the value of the 'unit type' in Rust called?
+
+'unit value', also represented by..
+()
+
+
+### 52. What do expressions implicitly return when they don't have an explicitly returned value?
+
+A unit value
+
+
+### 53. What is a Rust array?
+
+An array is a compound type that gives you the means to group together a number of values with the same type into one.
+It has a fixed length, so they cannot grow or shrink in size.
+
+
+### 54. Demonstrate code that creates a Rust array
+
+Here:
+```
+  fn main() {
+    let a = [1, 2, 3, 4, 5];
+  }
+```  
+Another example:
+```
+  fn main() {
+    let a: [i32; 4] = [3, 4, 5, 6];
+  }
+```  
+
+
+### 55. When, in what two cases, would you typically use an array in Rust code?
+
+- When you want data allocated on the stack rather than on the heap.
+- When you want to ensure that you always have a fixed number of elements.
+
+
+### 56. When may you choose a vector over an array?
+
+- If you're unsure whether to use an array or a vector.
+- If you want to be able to shrink or grow the size of what holds your data.
+
+
+### 57. What is the major difference between an array and a vector?
+
+An array's size can never increase nor decrease, whereas, a vector's size can.
+
+
+### 58. Demonstrate code that initializes an array to contain the same value for each element by specifying the initial value at its point of creation
+
+Here:
+```
+  fn main() {
+    let a = [3; 5];
+  }
+```  
+The code here above, creates an array called 'a' that will contain 5 elements that will all be set to the value of 3 initially. The code is equivalent to writing..
+  let a = [3, 3, 3, 3, 3];
+..but in a more concise way.
+
+
+### 59. Demonstrate code that access elements of an array, using indexing of course!
+
+Here:
+```
+  fn main() {
+    let a = [1, 2, 3, 4. 5];
+    let first = a[0];
+    let second = a[1];
+  }
+```  
+In the above example, the variable 'first' will get the value 1 because that is the value at index [0] in the array, whereas, the variable named 'second' will get the value 2 from index [1] in the array.
+
+
+### 60. What happens to your Rust program when you try to access an array by an index greater than or equal to the length figure of the array?
+
+Rust panics and exit your program.
+
+
+Completed On: Wednesday, May 4, 2022. 10:24PM.
