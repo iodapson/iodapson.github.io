@@ -268,7 +268,7 @@ To continually check your work while writing the code, to make sure your program
 No
 
 
-### 23. What Cargo command do you use to build an executable that is most suitable and optimezed for release?
+### 23. What Cargo command do you use to build an executable that is most suitable and optimized for release?
 ```
 $ cargo build --release
 ```
