@@ -799,4 +799,4 @@ They are instructions that perform some action and do not return a value.
 They are constructs that *evaluate* to a resulting value.
 
 
-## Many more Drills available. To Be Continued..
+## Many more drills ready. To Be Continued..
