@@ -770,7 +770,7 @@ Here:
   fn main() {
     another_function(50);
   }
-``  
+```  
 Another example:
 ```
   fn main() {
@@ -799,11 +799,4 @@ They are instructions that perform some action and do not return a value.
 They are constructs that *evaluate* to a resulting value.
 
 
-### 5. Give two examples of a statement
-
-i) Variable declaration/initializate:
-  let y = 6;
-ii) Function declaration:
-  fn some_function() {
-    //...
-  }
+## Many more Drills available. To Be Continued..
