@@ -263,9 +263,9 @@ It first builds or rebuild your Rust cargo projects, and then run the generated 
 To continually check your work while writing the code, to make sure your program compiles, hence telling you that you have made no mistakes that would lead to a failed compilation process
 
 
-### 22. Cargo command "cargo check" compiles your code, but does it also generate or produce an execuatable?
+### 22. What does Cargo command "cargo check" do?
 
-No
+It perfoms type checking, analysis, and linting of your code. Technically, "cargo check" computes only the crate metadata, which consists of the public signarures of items in the crate (but no, e.g. the bodies of functions).
 
 
 ### 23. What Cargo command do you use to build an executable that is most suitable and optimized for release?
@@ -291,11 +291,15 @@ Completed On: Tuesday, May 3, 2022.
 
 By using the keyword "mut" in your variable declaration, like this:
 ```
-let mut variable-name = 5;
+let mut variable_name = 5;
+println!("variable_name's value is: {}", variable_name);
+variable_name = 7;
+println!("variable_name is now: {}", variable_name);
+
 ```
 
 
-### 2. What syntax is used as a placeholder inside strings, when you plan to access a variable's value inside the string?
+### 2. What operator is Rust's default string-literal formatter?
 
 {}
 For example, you use it like this:
@@ -323,9 +327,13 @@ By using the "const" keyword alongside a variable name written in all-caps, and 
 ```  
 
 
-### 6. What is the validity period of a Rust constant variable?
+### 6. What are the major characteristics of a constant?
 
-The entire time a Rust program runs. It seems to me that this means that they are not garbage collected.
+- A constant in Rust is unchangeable and would remain so for as long as the program runs.
+
+- A constant's value would be etched into the resulting code compilation.
+
+- The compiler may decide to promote it to a 'static lifetime as an optimization step, once you begin to access the constant declaration's address elsewhere in the code, within a scope equal, or less than where the constant declaration was made.
 
 
 ### 7. Take note of variable shadowing
@@ -479,7 +487,9 @@ i32
 
 ### 27. In what primary situation would you use integer types isize or usize?
 
-When indexing some sort of collection.
+They are used as pointer offsets to any location in memory. isize is an alternative to usize.
+The difference is that isize is a pointer-sized signed integer type, while usize is a pointer-sized unsigned integer type.
+They both have sizes which depends on the arch of your machine (32bit or 64bit).
 
 
 ### 28. Explain what integer overflow is with an example illustration
@@ -487,15 +497,16 @@ When indexing some sort of collection.
 Let's say you have a variable of type u8 that can hold values between 0 and 255. Now, if you try to change the variable to a value outside of that range, such as 256, Integer overflow will occur.
 
 
-### 29. How does Rust react of integer overflow scenerios?
+### 29. How does Rust react to integer overflow scenerios?
 
 In debug mode: Your program will panic at runtime and then exit with an error, when it checks your program for integer overflow.
 In release mode: It won't panic. Rather, two's complement wrapping occurs. For example, in the case of a u8, the value 256 becomes 0. In case of u8 with an acribed value 257, becomes 1.
+N.B: Overflow behavior is actually controlled by the '-C overflow-checks' rustc option, and by the 'overflow-checks' option in the Cargo profiles section. You really can change the overflow behavior regardless of the profile.
 
 
-### 30. Relying on integer overflow's wrapping behavior is considered what?
+### 30. Relying on two's complement wrapping in overflow, for code in release mode could result to code with unexpected behavior, true or false?
 
-An error.
+True.
 
 
 ### 31. What methods are provided by the Rust standard libray for primitive numeric types, to handle the possibility of overflow?
@@ -629,8 +640,7 @@ They are a mechanism that allows you to group multiple values into one type.
 
 ### 46. What is a Rust tuple?
 
-A tuple is a compound type that gives you the means to group together a number of values of the same type only into one.
-It has a fixed length, so they cannot grow or shrink in size.
+A tuple is a compound type that gives you the means to group together a number of values of arbitrary types into one. It has a fixed length, so they cannote grow or shrink in size.
 
 
 ### 47. Demonstrate code that creates a Rust tuple
@@ -680,9 +690,11 @@ It is a tuple without any value, represented by..
 ()
 
 
-### 52. What do expressions implicitly return when they don't have an explicitly returned value?
+### 52. What do functions return when they don't have an explicitly returned value or lifetime annotated reference?
 
-A unit value
+A unit value, as in;
+
+ ()
 
 
 ### 53. What is a Rust array?
