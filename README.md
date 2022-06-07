@@ -500,7 +500,7 @@ Let's say you have a variable of type u8 that can hold values between 0 and 255.
 ### 29. How does Rust react to integer overflow scenerios?
 
 In debug mode: Your program will panic at runtime and then exit with an error, when it checks your program for integer overflow.
-In release mode: It won't panic. Rather, two's complement wrapping occurs. For example, in the case of a u8, the value 256 becomes 0. In case of u8 with an acribed value 257, becomes 1.
+In release mode: It won't panic. Rather, two's complement wrapping occurs. For example, in the case of a u8, the value 256 becomes 0. In case of u8 with an ascribed value 257, becomes 1.
 N.B: Overflow behavior is actually controlled by the '-C overflow-checks' rustc option, and by the 'overflow-checks' option in the Cargo profiles section. You really can change the overflow behavior regardless of the profile.
 
 
@@ -640,7 +640,7 @@ They are a mechanism that allows you to group multiple values into one type.
 
 ### 46. What is a Rust tuple?
 
-A tuple is a compound type that gives you the means to group together a number of values of arbitrary types into one. It has a fixed length, so they cannote grow or shrink in size.
+A tuple is a compound type that gives you the means to group together a number of values of arbitrary types into one. It has a fixed length, so they cannot grow or shrink in size.
 
 
 ### 47. Demonstrate code that creates a Rust tuple
