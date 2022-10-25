@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Enums and Pattern matching - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html" class="active"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="enums-and-pattern-matching"><a class="header" href="#enums-and-pattern-matching">Enums and Pattern matching</a></h1>
+<h4 id="1-demonstrate-code-syntax-that-creates-an-enum"><a class="header" href="#1-demonstrate-code-syntax-that-creates-an-enum">1. Demonstrate code syntax that creates an enum</a></h4>
+<p>Here:</p>
+<pre><code>  enum IpAddrKind {
+    V4,
+    V6,
+  }
+</code></pre>
+<h4 id="2-demonstrate-code-that-accessuse-variants-of-an-hypothetical-enum-called-ipaddrkind"><a class="header" href="#2-demonstrate-code-that-accessuse-variants-of-an-hypothetical-enum-called-ipaddrkind">2. Demonstrate code that access/use variants of an hypothetical enum called 'IpAddrKind'</a></h4>
+<p>Here:</p>
+<pre><code>  enum IpAddrKind {
+    V4,
+    V6,
+  }
+  let four = IpAddrKind::V4;
+  let six = IpAddrKind::V6;
+</code></pre>
+<h4 id="3-demonstrate-a-snippet-whereby-a-function-has-a-single-parameter-whose-type-is-an-hypothetical-enum-called-ipaddrkind"><a class="header" href="#3-demonstrate-a-snippet-whereby-a-function-has-a-single-parameter-whose-type-is-an-hypothetical-enum-called-ipaddrkind">3. Demonstrate a snippet whereby a function has a single parameter whose type is an hypothetical enum called IpAddrKind</a></h4>
+<p>Here:</p>
+<pre><code>  fn route(ip_kind: IpAddrKind) {}
+</code></pre>
+<h4 id="4-demonstrate-code-that-uses-an-enum-ipaddrkind-in-conjuction-with-a-struct-ipaddr-such-that-one-of-the-structs-element-type-is-a-custom-enum"><a class="header" href="#4-demonstrate-code-that-uses-an-enum-ipaddrkind-in-conjuction-with-a-struct-ipaddr-such-that-one-of-the-structs-element-type-is-a-custom-enum">4. Demonstrate code that uses an enum (IpAddrKind) in conjuction with a struct (IpAddr) such that one of the struct's element type is a custom enum</a></h4>
+<p>Here:</p>
+<pre><code>  // the enum
+  enum IpAddrKind {
+    V4,
+    V6,
+  }
+  // the structc
+  struct IpAddr {
+    kind: IpAddrKind, // element kind's IpAddrKind
+    address: String,
+  }
+  // time for usage
+  let home = IpAddr {
+    kind: IpAddrKind::V4, // the usage of the enum
+    address: String::from(&quot;127.0.0.1&quot;),
+  };
+  let loopback = IpAddr {
+    kind: IpAddrKind::V6,
+    address: String::from(&quot;::1&quot;),
+  };
+</code></pre>
+<h4 id="5-demonstrate-code-that-creates-an-enum-with-variants-that-receive-an-argument-of-type-string"><a class="header" href="#5-demonstrate-code-that-creates-an-enum-with-variants-that-receive-an-argument-of-type-string">5. Demonstrate code that creates an enum with variants that receive an argument of type String</a></h4>
+<p>Here:</p>
+<pre><code>  enum IpAddrKind {
+    V4(String),
+    V6(String),
+  }
+  let home = IpAddr::V4(String::from(&quot;127.0.0.1&quot;));
+  let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<h4 id="6-demonstrate-code-that-creates-an-enum-with-two-variants-that-has-two-arguments-one-has-a-tuple-argument-the-other-a-string-argument"><a class="header" href="#6-demonstrate-code-that-creates-an-enum-with-two-variants-that-has-two-arguments-one-has-a-tuple-argument-the-other-a-string-argument">6. Demonstrate code that creates an enum with two variants that has two arguments (one has a tuple argument, the other a String argument)</a></h4>
+<p>Here:</p>
+<pre><code>  enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
+  }
+  let home = IpAddr::V4(127, 0, 0, 1);
+  let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<h4 id="7-demonstrate-code-of-an-enum-with-a-variant-whose-type-is-a-struct"><a class="header" href="#7-demonstrate-code-of-an-enum-with-a-variant-whose-type-is-a-struct">7. Demonstrate code of an enum with a variant whose type is a struct</a></h4>
+<p>Here:</p>
+<pre><code>  enum Message [
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+  }
+</code></pre>
+<h4 id="8-demonstrate-code-that-implements-the-enum-called-message-above-in-no7-such-that-the-enum-now-has-a-method"><a class="header" href="#8-demonstrate-code-that-implements-the-enum-called-message-above-in-no7-such-that-the-enum-now-has-a-method">8. Demonstrate code that implements the enum called 'Message' above in no.7, such that the enum now has a method.</a></h4>
+<p>Here:</p>
+<pre><code>  impl Message {
+    fn call(&amp;self) {
+      // method body would be defined here
+    }
+  }
+  let m = Message::Write(String::from(&quot;hello&quot;));
+  m.call();
+</code></pre>
+<h4 id="9-the-rust-concept-that-allows-the-existence-of-an-enum-that-can-encode-the-concept-of-a-value-being-present-or-absent-is-represented-by-what-enum"><a class="header" href="#9-the-rust-concept-that-allows-the-existence-of-an-enum-that-can-encode-the-concept-of-a-value-being-present-or-absent-is-represented-by-what-enum">9. The Rust concept that allows the existence of an enum that can encode the concept of a value being present or absent is represented by what enum?</a></h4>
+<p><code>Option&lt;T&gt;</code></p>
+<h4 id="10-what-is-the-signature-of-the-special-option-enum"><a class="header" href="#10-what-is-the-signature-of-the-special-option-enum">10. What is the signature of the special Option<T> enum?</a></h4>
+<p>Here:</p>
+<pre><code>  enum Option&lt;T&gt; {
+    None,
+    Some(T),
+  }
+</code></pre>
+<h4 id="11-do-you-need-to-declare-or-import-the-option-enum-in-order-to-use-it-in-your-code"><a class="header" href="#11-do-you-need-to-declare-or-import-the-option-enum-in-order-to-use-it-in-your-code">11. Do you need to declare or import the Option<T> enum in order to use it in your code?</a></h4>
+<p>No.</p>
+<h4 id="12-what-does-the-option-enum-allow-you-to-do"><a class="header" href="#12-what-does-the-option-enum-allow-you-to-do">12. What does the Option<T> enum allow you to do?</a></h4>
+<p>It lets you represent the concept of a value either being present or absent. It is a better replacement of Null.</p>
+<h4 id="13-demonstrate-code-that-uses-the-none-and-somet-variants-of-enum-option"><a class="header" href="#13-demonstrate-code-that-uses-the-none-and-somet-variants-of-enum-option">13. Demonstrate code that uses the None and Some(T) variants of enum Option<T></a></h4>
+<p>Here:</p>
+<pre><code>  let some_number = Some(5);
+  let some_string = Some(&quot;a string&quot;);
+  let absent_number: Option&lt;i32&gt; = None;
+</code></pre>
+<h4 id="14-becoming-familiar-with-the-methods-on-option-will-be-extremely-useful-in-your-journey-with-rust-what-resource-could-you-turn-to-to-learn-more-about-option"><a class="header" href="#14-becoming-familiar-with-the-methods-on-option-will-be-extremely-useful-in-your-journey-with-rust-what-resource-could-you-turn-to-to-learn-more-about-option">14. Becoming familiar with the methods on Option<T> will be extremely useful in your journey with Rust; what resource could you turn to to learn more about Option<T></a></h4>
+<p>https://doc.rust-lang.org/std/option/enum.Option.html</p>
+<h4 id="15-demonstrate-code-which-creates-a-custom-enum-and-uses-it-with-a-match-inside-a-function"><a class="header" href="#15-demonstrate-code-which-creates-a-custom-enum-and-uses-it-with-a-match-inside-a-function">15. Demonstrate code which creates a custom enum and uses it with a match inside a function</a></h4>
+<p>Here:</p>
+<pre><code>  enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+  }
+  fn value_in_cents(coin: Coin) -&gt; u8 {
+    match coin {
+      Coin::Penny =&gt; 1,
+      Coin::Nickel =&gt; 5,
+      Coin::Dime =&gt; 10,
+      Coin::Quarter =&gt; 25,
+    }
+  }
+</code></pre>
+<p>// Coin::Penny in the code above here is an example of a patter which the value coin: Coin is matched against</p>
+<h4 id="16-demonstrate-code-of-patterns-that-bind-to-values-note-that-this-would-involve-embedding-another-enum-into-one-or-more-variants-of-an-enum-as-its-value-like-so"><a class="header" href="#16-demonstrate-code-of-patterns-that-bind-to-values-note-that-this-would-involve-embedding-another-enum-into-one-or-more-variants-of-an-enum-as-its-value-like-so">16. Demonstrate code of patterns that bind to values. Note that this would involve embedding another enum into one or more variants of an enum as its value, like so;</a></h4>
+<p>VariantC(AnotherEnumType)</p>
+<p>Here:</p>
+<pre><code>   #[derive(Debug)]
+  enum UsState {
+      Alabama,
+      Alaska,
+      // --snip--
+  }
+  //let usState = UsState
+  enum Coin {
+      Penny,
+      Nickel,
+      Dime,
+      Quarter(UsState),
+  }
+  fn value_in_cents(coin: Coin) -&gt; u8 {
+      match coin {
+          Coin::Penny =&gt; 1,
+          Coin::Nickel =&gt; 5,
+          Coin::Dime =&gt; 10,
+          Coin::Quarter(state) =&gt; {
+              println!(&quot;State quarter from {:?}!&quot;, state);
+              25
+          }
+      }
+  }
+  fn main() {
+      let returned_value = value_in_cents(Coin::Quarter(UsState::Alabama));
+      println!(&quot;returned value is: {}&quot;, returned_value);
+  }
+</code></pre>
+<h4 id="17-demonstrate-code-wherby-you-match-to-an-option-pattern"><a class="header" href="#17-demonstrate-code-wherby-you-match-to-an-option-pattern">17. Demonstrate code wherby you match to an Option<T> pattern</a></h4>
+<p>Here:</p>
+<pre><code>  fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
+    match x {
+      None =&gt; None,
+      Some(i) =&gt; Some(i+1),
+    }
+  }
+  let five = Some(5);
+  let six = plus_one(five);
+  let none = plus_one(None);
+</code></pre>
+<h4 id="18-specify-how-using-the-match-construct-can-make-using-enums-tedious"><a class="header" href="#18-specify-how-using-the-match-construct-can-make-using-enums-tedious">18. Specify how using the match construct can make using enums tedious</a></h4>
+<p>Rust knows when you don't cover every possible case and even knows which pattern you forgot (ie, the omitted arm).
+Matches in Rust are exhaustive; you must exhaust every last possibility in order for the code to be valid. Especially in the case of Option<T>, when Rust prevents you from forgetting to explicitly handle the None case, it protects us from assuming that we have a value when you might have null, thus making the billion-dollar mistake of the 'null' constrct in other programming languages possible.</p>
+<h4 id="19-what-can-you-do-to-avoid-having-to-provision-for-every-possible-pattern-of-an-enum-or-even-any-other-possible-pattern-of-a-non-enum-value-in-a-match-construct"><a class="header" href="#19-what-can-you-do-to-avoid-having-to-provision-for-every-possible-pattern-of-an-enum-or-even-any-other-possible-pattern-of-a-non-enum-value-in-a-match-construct">19. What can you do to avoid having to provision for every possible pattern of an enum, or even any other possible pattern of a non-enum value in a match construct?</a></h4>
+<p>By making use of a catch-all arm. Note that the catch-all arm must be the very last pattern inside your match construct.</p>
+<h4 id="20-demonstrate-code-that-specifies-a-catch-all-arm-inside-a-match-construct"><a class="header" href="#20-demonstrate-code-that-specifies-a-catch-all-arm-inside-a-match-construct">20. Demonstrate code that specifies a catch-all arm inside a match construct</a></h4>
+<p>Here:</p>
+<pre><code>  let dice_roll = 9; // note that this is i32, the default when you do not specify the type for an integer value
+  // now the match construct
+  match dice_roll {
+    3 =&gt; add_fancy_hat(),
+    7 =&gt; remove_fancy_hat(),
+    other =&gt; move_player(other), // this is the catch-all arm. You can name the placeholder anything asides 'other'. other's type must match the remaining patterns too.
+  }
+  fn add_fancy_hat() {}
+  fn remove_fancy_hat() {}
+  fn move_player(num_spaces: u8) {}
+//The above code meets the exhaustiveness requirement of the match construct.
+</code></pre>
+<h4 id="21-demonstrate-code-that-tells-rust-explicitly-that-you-arent-going-to-use-any-other-value-that-does-not-match-a-pattern-earlier-specified-in-a-match-construct"><a class="header" href="#21-demonstrate-code-that-tells-rust-explicitly-that-you-arent-going-to-use-any-other-value-that-does-not-match-a-pattern-earlier-specified-in-a-match-construct">21. Demonstrate code that tells Rust explicitly that you aren't going to use any other value that does not match a pattern earlier specified in a match construct</a></h4>
+<p>Here:</p>
+<pre><code>  let dice_roll = 9;
+  match dice_roll {
+    3 =&gt; add_fancy_hat(),
+    7 =&gt; remove_fancy_hat(),
+    _ =&gt; reroll(),
+  }
+  fn add_fancy_hat() {}
+  fn remove_fancy_hat() {}
+  fn reroll() {}
+</code></pre>
+<h4 id="22-demonstrate-code-that-tells-rust-explicitly-that-you-arent-going-to-use-any-other-value-that-does-not-match-a-pattern-earlier-specified-in-a-match-construct-and-that-it-should-not-run-any-code-in-this-case"><a class="header" href="#22-demonstrate-code-that-tells-rust-explicitly-that-you-arent-going-to-use-any-other-value-that-does-not-match-a-pattern-earlier-specified-in-a-match-construct-and-that-it-should-not-run-any-code-in-this-case">22. Demonstrate code that tells Rust explicitly that you aren't going to use any other value that does not match a pattern earlier specified in a match construct, and that it should not run any code in this case</a></h4>
+<p>Here:</p>
+<pre><code>  let dice_roll = 9;
+  match dice_roll {
+    3 =&gt; add_fancy_hat(),
+    7 =&gt; remove_fancy_hat(),
+    _ =&gt; (),
+  }
+  fn add_fancy_hat() {}
+  fn remove_fancy_hat() {}
+</code></pre>
+<h4 id="23-what-construct-can-be-useful-in-situations-where-the-match-expression-is-a-bit-wordy"><a class="header" href="#23-what-construct-can-be-useful-in-situations-where-the-match-expression-is-a-bit-wordy">23. What construct can be useful in situations where the 'match' expression is a bit wordy?</a></h4>
+<p>The
+if let
+..syntax.</p>
+<h4 id="24-in-what-specific-case-would-an-iflet-construct-be-appropriate-or-considered-for-use-in-your-code"><a class="header" href="#24-in-what-specific-case-would-an-iflet-construct-be-appropriate-or-considered-for-use-in-your-code">24. In what specific case would an if..let construct be appropriate, or considered for use in your code?</a></h4>
+<p>Whern you want a less verbose match alternative for code that should run when a value matches one pattern and ignores all other values.
+You want to sniff out a single pattern and run code for it.</p>
+<h4 id="25-demonstrate-code-for-matching-against-a-single-pattern-value-while-ignoring-all-others"><a class="header" href="#25-demonstrate-code-for-matching-against-a-single-pattern-value-while-ignoring-all-others">25. Demonstrate code for matching against a single pattern value, while ignoring all others</a></h4>
+<p>Here:</p>
+<pre><code>  // Using the Option&lt;T&gt; enumeration
+  let config_max = Some(3u8);
+  match config_max {
+    Some(max) =&gt; println!(&quot;The maximum is configured to be {}&quot;, max),
+    _ =&gt; (), // this syntax (boilerplate code) makes it possible to skip writing code for other patterns
+  }
+</code></pre>
+<h4 id="26-demonstrate-code-for-matching-against-a-single-pattern-value-while-ignoring-all-others-using-the-iflet-syntax"><a class="header" href="#26-demonstrate-code-for-matching-against-a-single-pattern-value-while-ignoring-all-others-using-the-iflet-syntax">26. Demonstrate code for matching against a single pattern value, while ignoring all others, using the if..let syntax</a></h4>
+<p>Here:</p>
+<pre><code>  // Using the Option&lt;T&gt; enumeration:
+  let config_max = Some(3u8);
+  if let Some(max) = config_max {
+    println!(&quot;The maximum is configuredd to be {}&quot;, max);
+  }
+</code></pre>
+<h4 id="27-demonstrate-code-that-uses-an-else-with-a-iflet-syntax"><a class="header" href="#27-demonstrate-code-that-uses-an-else-with-a-iflet-syntax">27. Demonstrate code that uses an else with a if..let syntax</a></h4>
+<p>Here:</p>
+<pre><code>  let mut count = 0;
+  if let Coin::Quarter(state) = coin {
+    println!(&quot;State quarter from {:?}!&quot;, state);
+  } else {
+    count += 1;
+  }
+</code></pre>
+<h4 id="28-convert-the-code-above-in-no-27-to-a-match-construct"><a class="header" href="#28-convert-the-code-above-in-no-27-to-a-match-construct">28. Convert the code above in no-27 to a match construct</a></h4>
+<p>Here:</p>
+<pre><code>  let mut count = 0;
+  match coin {
+    Coin::Quarter(state) =&gt; println!(&quot;State quarter from {:?}&quot;, state),
+    _ =&gt; count += 1,
+  }
+</code></pre>
+<p>Completed On: Saturday, May 14, 2022. 02:14PM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_8/chapter_8.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_10/chapter_10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_8/chapter_8.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_10/chapter_10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

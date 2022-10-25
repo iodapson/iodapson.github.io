@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Common Collections - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html" class="active"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="common-collections---storing-lists-of-values-with-vectors-storing-utf-8-encoded-text-with-strings-storing-keys-with-associated-values-in-hash-maps"><a class="header" href="#common-collections---storing-lists-of-values-with-vectors-storing-utf-8-encoded-text-with-strings-storing-keys-with-associated-values-in-hash-maps">Common Collections - Storing Lists of Values with Vectors, Storing UTF-8 Encoded Text with Strings, Storing Keys with Associated Values in Hash Maps</a></h1>
+<p>Common Collections
+Storing Lists of Values with Vectors
+Stroring UTF-8 Encoded Test with Strings
+Storing Keys with Associated Values in Hash Maps</p>
+<h4 id="1-list-three-common-collections-available-to-you-in-rust"><a class="header" href="#1-list-three-common-collections-available-to-you-in-rust">1. List three common collections available to you in Rust</a></h4>
+<ul>
+<li>vector; allows you to store a variable number of values next to each other</li>
+<li>string; which is a collection of characters</li>
+<li>hash map; which allows you to associate a value with a particular key. It's a particular implementation of the more general data structure called a map.</li>
+</ul>
+<h4 id="2-what-syntax-can-you-use-to-create-a-new-vector"><a class="header" href="#2-what-syntax-can-you-use-to-create-a-new-vector">2. What syntax can you use to create a new vector?</a></h4>
+<ul>
+<li>Vec::new()
+or</li>
+<li>vec![item_one, item_two, more_items] // using this syntax, the compiler would infer the type from the constituents, i.e. the items</li>
+</ul>
+<h4 id="3-demonstrate-code-that-creates-a-vector-using-the-syntax-vecnew"><a class="header" href="#3-demonstrate-code-that-creates-a-vector-using-the-syntax-vecnew">3. Demonstrate code that creates a vector using the syntax &quot;Vec::new()&quot;</a></h4>
+<p>Here:</p>
+<pre><code>  let v: Vec&lt;i32&gt; = Vec::new();
+</code></pre>
+<h4 id="4-what-method-can-you-use-to-add-an-item-to-a-vector"><a class="header" href="#4-what-method-can-you-use-to-add-an-item-to-a-vector">4. What method can you use to add an item to a vector</a></h4>
+<p>The &quot;push()&quot; method.</p>
+<h4 id="5-demonstrate-code-that-adds-items-to-a-code-built-with-syntax-vecnew"><a class="header" href="#5-demonstrate-code-that-adds-items-to-a-code-built-with-syntax-vecnew">5. Demonstrate code that adds items to a code built with syntax &quot;Vec::new()&quot;</a></h4>
+<p>Here:</p>
+<pre><code>  let mut v = Vec::new();
+  v.push(5);
+  v.push(6);
+  v.push(7);
+  v.push(8);
+</code></pre>
+<h4 id="6-what-instruments-are-available-to-you-for-reading-an-item-from-a-vector"><a class="header" href="#6-what-instruments-are-available-to-you-for-reading-an-item-from-a-vector">6. What instruments are available to you for reading an item from a vector?</a></h4>
+<ul>
+<li>indexing</li>
+<li>get()</li>
+</ul>
+<h4 id="7-demonstrate-code-that-reads-an-item-from-a-vector-using-both-indexing-and-method-get"><a class="header" href="#7-demonstrate-code-that-reads-an-item-from-a-vector-using-both-indexing-and-method-get">7. Demonstrate code that reads an item from a vector using both indexing and method &quot;get()&quot;</a></h4>
+<p>Here:</p>
+<pre><code>  let v = vec![1, 2, 3, 4, 5];
+  let index_two = 2;
+  // indexing approach
+  let index_two_value: i32 = v[index_two.try_into().unwrap()]; // convert integer to usize, the valid indexing data type for vectors
+  let index_three = 3;
+  // get() approach
+  let index_three_value: i32 = v.get(index_three.try_into().unwraps()); // convert integer to usize, the valid indexing data type for vectors.
+</code></pre>
+<p>NB:
+The get() syntax approch returns an Option<T> enum, hence suitable for maching.</p>
+<h4 id="8-demonstrate-code-that-iterates-a-mutable-vector-such-that-it-increases-each-item-item-in-the-vector-by-50"><a class="header" href="#8-demonstrate-code-that-iterates-a-mutable-vector-such-that-it-increases-each-item-item-in-the-vector-by-50">8. Demonstrate code that iterates a mutable vector, such that it increases each item item in the vector by 50</a></h4>
+<p>Here:</p>
+<pre><code>  let mut v = vec![100, 32, 57];
+  for i in &amp;mut v {
+    *i += 50;
+  }
+</code></pre>
+<h4 id="9-vectors-must-holds-items-wherein-every-item-must-be-of-the-same-type-true-or-false"><a class="header" href="#9-vectors-must-holds-items-wherein-every-item-must-be-of-the-same-type-true-or-false">9. Vectors must holds items, wherein every item must be of the same type. True or False?</a></h4>
+<p>True.</p>
+<h4 id="10-how-can-you-create-a-vector-that-holds-items-somewhat-of-different-types"><a class="header" href="#10-how-can-you-create-a-vector-that-holds-items-somewhat-of-different-types">10. How can you create a vector that holds items somewhat of different types?</a></h4>
+<p>By creating a enum that serves as wrapper around the different data types. The vector items would then contain items of the same enum type.</p>
+<h4 id="11-demonstrate-code-that-creates-a-vector-that-holds-items-somewhat-of-different-types-wrapped-around-by-an-enum"><a class="header" href="#11-demonstrate-code-that-creates-a-vector-that-holds-items-somewhat-of-different-types-wrapped-around-by-an-enum">11. Demonstrate code that creates a vector that holds items somewhat of different types wrapped around by an enum</a></h4>
+<p>Here:</p>
+<pre><code>  // the enum
+  enum SpreadsheetCell {
+    Int(i32),
+    Fload(64),
+    Text(String),
+  }
+  let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from(&quot;blue&quot;)),
+    SpreadsheetCell::Float(10.12),
+  ];
+</code></pre>
+<h4 id="12-what-syntax-is-used-to-convert-an-str-to-string"><a class="header" href="#12-what-syntax-is-used-to-convert-an-str-to-string">12. What syntax is used to convert an &amp;str to String?</a></h4>
+<pre><code>to_string()
+</code></pre>
+<h4 id="13-demonstrate-code-that-converts-an-str-data-to-string-data"><a class="header" href="#13-demonstrate-code-that-converts-an-str-data-to-string-data">13. Demonstrate code that converts an $str data to String data</a></h4>
+<p>Here:</p>
+<pre><code>  let data = &quot;initial contents&quot;;
+  let s = data.to_string(); // alternatively, you can do it like so;
+  &quot;inital contents&quot;.to_string();
+</code></pre>
+<h4 id="14-what-syntax-can-you-use-to-grow-a-string-like-you-would-a-vector-for-example"><a class="header" href="#14-what-syntax-can-you-use-to-grow-a-string-like-you-would-a-vector-for-example">14. What syntax can you use to grow a String like you would a vector for example</a></h4>
+<pre><code>push_str()
+</code></pre>
+<h4 id="15-demonstrate-code-that-grows-a-string"><a class="header" href="#15-demonstrate-code-that-grows-a-string">15. Demonstrate code that grows a String</a></h4>
+<p>Here:</p>
+<pre><code>  let mut s = String::from(&quot;foo&quot;);
+  s.push_str(&quot;bar&quot;);
+</code></pre>
+<h4 id="16-what-syntax-can-you-use-to-concatenate-strings-in-rust"><a class="header" href="#16-what-syntax-can-you-use-to-concatenate-strings-in-rust">16. What syntax can you use to concatenate strings in Rust?</a></h4>
+<p>The + symbol/operator.</p>
+<h4 id="17-demonstrate-code-that-concatenates-strings-in-rust"><a class="header" href="#17-demonstrate-code-that-concatenates-strings-in-rust">17. Demonstrate code that concatenates strings in Rust</a></h4>
+<p>Here:</p>
+<pre><code>  let s1 = String::from(&quot;Hello, &quot;);
+  let s2 = String::from(&quot;world!&quot;);
+  let s3 = s1 + &amp;s2; // note s1 has been moved here and can no longer be used. s3 becomes a new string
+</code></pre>
+<h4 id="16-describe-one-fundamental-characteristic-of-rust-string-concatenation-syntax"><a class="header" href="#16-describe-one-fundamental-characteristic-of-rust-string-concatenation-syntax">16. Describe one fundamental characteristic of Rust String concatenation syntax</a></h4>
+<p>It takes ownership of the String on its left-hand side, but not the one on its right-hand side.
+Hence, you must take ownership of the first string, while the second string must be borrowed (with &amp;).</p>
+<h4 id="17-rust-string-concatenation-uses-what-syntax-under-the-hood"><a class="header" href="#17-rust-string-concatenation-uses-what-syntax-under-the-hood">17. Rust String concatenation uses what syntax under the hood?</a></h4>
+<pre><code>add()
+</code></pre>
+<h4 id="18-highlight-the-signature-of-add"><a class="header" href="#18-highlight-the-signature-of-add">18. Highlight the signature of add()</a></h4>
+<p>Here</p>
+<pre><code>  fn add(self, s: &amp;str) -&gt; String{} // where 'self' is a String
+</code></pre>
+<h4 id="19-how-is-add-able-to-convert-a-string-on-the-right-hand-side-of-the-concatenation-into-an-str-its-second-argument"><a class="header" href="#19-how-is-add-able-to-convert-a-string-on-the-right-hand-side-of-the-concatenation-into-an-str-its-second-argument">19. How is &quot;add()&quot; able to convert a &amp;String (on the right-hand side of the concatenation) into an &amp;str (its second argument)?</a></h4>
+<p>Deref coersion, which coerce the &amp;String into &amp;str, by turning the passed in s (&amp;String) into &amp;s[..] (it slices the &amp;String into an &amp;str).</p>
+<h4 id="20-string-concatenation-is-a-really-good-idea-for-joining-many-string-data-into-a-different-and-single-string"><a class="header" href="#20-string-concatenation-is-a-really-good-idea-for-joining-many-string-data-into-a-different-and-single-string">20. String concatenation is a really good idea for joining many String data into a different and single String?</a></h4>
+<p>No. There is a better syntax to do just that. The better syntax is the &quot;format&quot; macro (as in, format!() ).</p>
+<h4 id="21-demonstrate-the-better-syntax-to-join-many-string-data-into-a-different-and-single-string"><a class="header" href="#21-demonstrate-the-better-syntax-to-join-many-string-data-into-a-different-and-single-string">21. Demonstrate the better syntax to join many String data into a different and single String</a></h4>
+<p>Here:</p>
+<pre><code>  let s1 = String::from(&quot;tic&quot;);
+  let s2 = String::from(&quot;tac&quot;);
+  let s3 = String::from(&quot;toe&quot;);
+  let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
+</code></pre>
+<h4 id="22-how-does-the-format-macro-specifically-differ-from-the-string-concatenation-syntax"><a class="header" href="#22-how-does-the-format-macro-specifically-differ-from-the-string-concatenation-syntax">22. How does the format!() macro specifically differ from the String concatenation syntax?</a></h4>
+<p>Unlike the concatenation syntax, the format!() macro does not take ownership of any of the Strings involved (i.e. passed in).</p>
+<h4 id="23-what-data-type-does-the-code"><a class="header" href="#23-what-data-type-does-the-code">23. What data type does the code</a></h4>
+<pre><code>  let len = String::from(&quot;Hola&quot;).len();
+</code></pre>
+<p>..return?</p>
+<p>usize.</p>
+<h4 id="24-does-rust-allow-you-to-target-a-single-constituent-of-a-string-by-means-of-indexing-eg"><a class="header" href="#24-does-rust-allow-you-to-target-a-single-constituent-of-a-string-by-means-of-indexing-eg">24. Does Rust allow you to target a single constituent of a String, by means of indexing e.g.</a></h4>
+<pre><code>  let hello = String::from(&quot;hello&quot;);
+  let answer = &amp;hello[0];
+</code></pre>
+<p>No.</p>
+<h4 id="25-why-does-rust-prevent-you-from-being-able-to-targetextract-a-strings-constituent-by-means-of-indexing"><a class="header" href="#25-why-does-rust-prevent-you-from-being-able-to-targetextract-a-strings-constituent-by-means-of-indexing">25. Why does Rust prevent you from being able to target/extract a String's constituent by means of indexing?</a></h4>
+<p>Rust sees/interprets and presents Strings to you the programmer from three angles namely;
+as an</p>
+<ul>
+<li>a vector of bytes (u8 values, no more than 255)</li>
+<li>array of scaler value (or Rust's char type)</li>
+<li>grapheme clusters (what you might otherwise call letters, which don't include special characters like the comma ',' or question-mark '?' symbol).</li>
+</ul>
+<p>Hence,
+You must provide more clarify on what you wish to target/extract from a String, beyond bytes returned by String indexing, which don't always return a valid scaler value at the very least.</p>
+<h4 id="26-what-is-the-best-way-to-target-constituent-values-from-a-string"><a class="header" href="#26-what-is-the-best-way-to-target-constituent-values-from-a-string">26. What is the best way to target constituent values from a String?</a></h4>
+<p>Slicing. Slicing Strings is the best way to target/extract constituent values from a String.</p>
+<h4 id="27-demonstrate-code-that-is-the-best-way-to-targetextract-constituent-values-from-a-string-ie-slicing-the-string"><a class="header" href="#27-demonstrate-code-that-is-the-best-way-to-targetextract-constituent-values-from-a-string-ie-slicing-the-string">27. Demonstrate code that is the best way to target/extract constituent values from a String, i.e. slicing the String</a></h4>
+<p>Here:</p>
+<pre><code>  let hello = String::from(&quot;Toughen&quot;);
+  let s = &amp;hello[0..5]; // s |&gt; &quot;Tough&quot;
+</code></pre>
+<h4 id="28-what-syntax-can-you-use-to-targetextract-unicode-scaler-valuesaka-a-char-from-a-string"><a class="header" href="#28-what-syntax-can-you-use-to-targetextract-unicode-scaler-valuesaka-a-char-from-a-string">28. What syntax can you use to target/extract unicode scaler value(s)(a.k.a, a 'char') from a String?</a></h4>
+<p>chars(), as in;</p>
+<pre><code>  String.chars()
+</code></pre>
+<p>which returns a tuple of the constituent chars of the String it is called on.</p>
+<h4 id="29-what-syntax-can-you-use-to-targetextract-bytes-from-a-string"><a class="header" href="#29-what-syntax-can-you-use-to-targetextract-bytes-from-a-string">29. What syntax can you use to target/extract bytes from a String?</a></h4>
+<p>bytes(), as in;</p>
+<pre><code>  String.bytes()
+</code></pre>
+<p>which returns a tuple of the constituent bytes of the String it is called on.</p>
+<h4 id="30-what-is-a-rust-hashmap"><a class="header" href="#30-what-is-a-rust-hashmap">30. What is a Rust HashMap?</a></h4>
+<p>The type &quot;HashMap&lt;K, V&gt;&quot; stores a mapping of keys of type K to values of type V.
+It does this via a hashing function which determines how it places these keys and values into memory.</p>
+<h4 id="31-what-is-a-hash-map-useful-for"><a class="header" href="#31-what-is-a-hash-map-useful-for">31. What is a hash map useful for?</a></h4>
+<p>For when you want to look up data not by using an index, as you can with vectors, but by using a key that can be of any type. For example, in a game, you could keep trak of each team's score in a hash map in which each key is a team's name and the values are each team's score. Given a team name, you can retrieve its score.</p>
+<h4 id="32-demonstrate-code-that-creates-a-new-hash-map-and-inserts-one-or-two-key-value-pairs-into-it"><a class="header" href="#32-demonstrate-code-that-creates-a-new-hash-map-and-inserts-one-or-two-key-value-pairs-into-it">32. Demonstrate code that creates a new hash map and inserts one or two key-value pairs into it</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+  fn main() {
+    let mut scores = HashMap::new();
+    scores.insert(String::from(&quot;Blue&quot;), 10);
+    scores.insert(String::from(&quot;Yellow&quot;), 50);
+  }
+</code></pre>
+<h4 id="33-demonstrate-code-that-creates-a-hashmap-from-two-vectors-one-supplying-keys-while-the-other-supplying-corresponding-values-respectively-powered-by-the-collect-method"><a class="header" href="#33-demonstrate-code-that-creates-a-hashmap-from-two-vectors-one-supplying-keys-while-the-other-supplying-corresponding-values-respectively-powered-by-the-collect-method">33. Demonstrate code that creates a HashMap from two vectors (one supplying keys, while the other supplying corresponding values, respectively), powered by the &quot;collect()&quot; method</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+
+  fn main() {
+    let teams = vec![String::from(&quot;Blue&quot;), String::from(&quot;Yellow&quot;)]; // this vector is chosen to supply keys
+    let initial_scores = vec![10, 50]; // this vector is chosen to supply values
+    let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collect(); // the type annotation HashMap&lt;_, _&gt; is needed here because it is possible to collect into may different data structures and Rust doesn't know which you want unless you specify.
+  }
+
+  //In the code, the expression assigned to
+  let scores: HashMap&lt;_, _&gt;
+..Rust can infer the types that the hash map contains bases on the types of the data in the vectors.
+</code></pre>
+<h4 id="34-what-mechanisms-are-available-to-you-to-access-values-in-a-hash-map"><a class="header" href="#34-what-mechanisms-are-available-to-you-to-access-values-in-a-hash-map">34. What mechanisms are available to you to access values in a hash map</a></h4>
+<ul>
+<li>indexing</li>
+<li>get()</li>
+</ul>
+<h4 id="35-demonstrate-code-that-acesss-values-in-a-hash-map-using-the-get-syntax"><a class="header" href="#35-demonstrate-code-that-acesss-values-in-a-hash-map-using-the-get-syntax">35. Demonstrate code that acesss values in a hash map, using the &quot;get()&quot; syntax</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+  fn main() {
+    let mut scores = HashMap::new();
+    scores.insert(String::from(&quot;Blue&quot;), 10);
+    let team_name = String::from(&quot;Blue&quot;); // same as scores' String &quot;Blue&quot; key
+    // time to retrieve a value from hash map 'scores'
+    let score = score = scores.get(&amp;team_name); // Returns an Option&lt;&amp;V&gt; kind of output, check below
+  }
+</code></pre>
+<p>|&gt; Some(&amp;10)</p>
+<h4 id="36-demonstrate-code-that-access-values-in-a-hash-map-by-means-of-indexing"><a class="header" href="#36-demonstrate-code-that-access-values-in-a-hash-map-by-means-of-indexing">36. Demonstrate code that access values in a hash map by means of indexing</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+  fn main() {
+    let mut scores = HasMap::new();
+    scores.insert(String::from(&quot;Blue&quot;), 10);
+    scores.insert(String::from(&quot;Yellow&quot;), 50);
+    // time to index hash map scores, using the for loop (as in for..in)
+    for (key, value) in &amp;scores { // &amp;scores because hash maps are reference types
+      println!(&quot;{}: {}&quot;, key, value);
+    }
+  }
+</code></pre>
+<p>This code will print each pair in an arbitrary order:
+|&gt;
+Yellow: 50
+Blue: 10</p>
+<h4 id="37-demonstrate-code-that-overwrites-a-value-for-a-given-key-inside-a-hashmap"><a class="header" href="#37-demonstrate-code-that-overwrites-a-value-for-a-given-key-inside-a-hashmap">37. Demonstrate code that overwrites a value for a given key inside a hashmap</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+  fn main() {
+    let mut scores = HashMap::new();
+    scores.insert(String::from(&quot;Blue&quot;), 10);
+    // time to overwrite
+    scores.insert(String::from(&quot;Blue&quot;), 25);
+    println!(&quot;{:?}&quot;, scores);
+  }
+</code></pre>
+<h4 id="38-demonstrate-code-that-inserts-a-value-to-a-key-inside-a-hash-map-provided-the-key-does-not-already-have-a-value-associated-with-it"><a class="header" href="#38-demonstrate-code-that-inserts-a-value-to-a-key-inside-a-hash-map-provided-the-key-does-not-already-have-a-value-associated-with-it">38. Demonstrate code that inserts a value to a key inside a hash map, provided the key does not already have a value associated with it</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+  fn main() {
+    let mut scores = HashMap::new();
+    scores.insert(String::from(&quot;Blue&quot;), 10);
+    // time for the conditional insert on the provision that there is no existing value associated with the key
+    scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
+    score.entry(String::from(&quot;Blue&quot;)).or_insert(50);
+    println!(&quot;{:?}&quot;, scores);
+  }
+</code></pre>
+<h4 id="39-demonstrate-code-that-counts-the-number-of-times-each-words-seperated-by-whitespace-occurs-inside-a-str-sentence-using-a-hashmap"><a class="header" href="#39-demonstrate-code-that-counts-the-number-of-times-each-words-seperated-by-whitespace-occurs-inside-a-str-sentence-using-a-hashmap">39. Demonstrate code that counts the number of times each words (seperated by whitespace) occurs inside a &amp;str sentence, using a HashMap</a></h4>
+<p>Here:</p>
+<pre><code>  use std::collections::HashMap;
+    fn main() {
+      let text = &quot;hello world wonderful world&quot;;
+      let mut map = HashMap::new();
+      for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+      }
+      println!(&quot;The HashMap map is: {:?}&quot;, map);
+    }
+
+
+|&gt; The HashMap map is: {&quot;world&quot;: 2, &quot;wonderful&quot;: 1, &quot;hello&quot;: 2}
+</code></pre>
+<h4 id="40-what-does-method-or_insert-return"><a class="header" href="#40-what-does-method-or_insert-return">40. What does method &quot;or_insert()&quot; return?</a></h4>
+<p>A mutable reference (&amp;mut v) to the value for the key it is called on.
+That is why the code in no.39 above had to dereference the result 'count' from</p>
+<pre><code>  map.entry(word).or_insert(0);
+</code></pre>
+<h4 id="41-what-does-the-hashing-function-that-hashmap-use-provide"><a class="header" href="#41-what-does-the-hashing-function-that-hashmap-use-provide">41. What does the hashing function that HashMap use provide?</a></h4>
+<p>It is a cryptographically secure hashing function that provides resistance to Denial of Service (DoS) attacks, which is not the fastest hasing algorithm available, but offers better security performance.</p>
+<h4 id="42-what-is-a-hasher"><a class="header" href="#42-what-is-a-hasher">42. What is a hasher?</a></h4>
+<p>A hasher is a type that implements the BuildHasher trait.</p>
+<p>Completed On: Monday, May 23, 2022. 04:58PM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_10/chapter_10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_11/chapter_11-1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_10/chapter_10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_11/chapter_11-1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
