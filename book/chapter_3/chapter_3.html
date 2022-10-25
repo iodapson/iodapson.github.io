@@ -1,0 +1,492 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Variables and Mutability, Data Types - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html" class="active"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="variables-and-mutability-data-types"><a class="header" href="#variables-and-mutability-data-types">Variables and Mutability, Data Types</a></h1>
+<h3 id="1-variables-in-rust-are-immutable-by-default-how-can-you-make-a-mutable-rust-variable"><a class="header" href="#1-variables-in-rust-are-immutable-by-default-how-can-you-make-a-mutable-rust-variable">1. Variables in Rust are immutable by default. How can you make a mutable Rust variable?</a></h3>
+<p>By using the keyword &quot;mut&quot; in your variable declaration, like this:</p>
+<pre><code>let mut variable_name = 5;
+println!(&quot;variable_name's value is: {}&quot;, variable_name);
+variable_name = 7;
+println!(&quot;variable_name is now: {}&quot;, variable_name);
+
+</code></pre>
+<h3 id="2-what-operator-is-rusts-default-string-literal-formatter"><a class="header" href="#2-what-operator-is-rusts-default-string-literal-formatter">2. What operator is Rust's default string-literal formatter?</a></h3>
+<p>{}
+For example, you use it like this:</p>
+<pre><code>  let a = 8;
+  println!(&quot;The value of variable a is: {}&quot;, a);
+</code></pre>
+<p>Output: 
+The value of variable a is: 8</p>
+<h3 id="3-how-do-you-specify-valid-strings-in-rust"><a class="header" href="#3-how-do-you-specify-valid-strings-in-rust">3. How do you specify valid strings in Rust?</a></h3>
+<p>With a pair of double quotes(&quot;...&quot;), instead of single quote pairs ('...').</p>
+<h3 id="4-how-do-you-create-a-constant-variable-in-rust"><a class="header" href="#4-how-do-you-create-a-constant-variable-in-rust">4. How do you create a constant variable in Rust?</a></h3>
+<p>By using the &quot;const&quot; keyword alongside a variable name written in all-caps, and annotating its data type.</p>
+<h3 id="5-give-an-example-rust-constant-variable-declaration"><a class="header" href="#5-give-an-example-rust-constant-variable-declaration">5. Give an example Rust constant variable declaration</a></h3>
+<pre><code>  const THREE_HOUR_IN_SECONDS: u32 = 60 * 60 * 3;
+</code></pre>
+<h3 id="6-what-are-the-major-characteristics-of-a-constant"><a class="header" href="#6-what-are-the-major-characteristics-of-a-constant">6. What are the major characteristics of a constant?</a></h3>
+<ul>
+<li>
+<p>A constant in Rust is unchangeable and would remain so for as long as the program runs.</p>
+</li>
+<li>
+<p>A constant's value would be etched into the resulting code compilation.</p>
+</li>
+<li>
+<p>The compiler may decide to promote it to a 'static lifetime as an optimization step, once you begin to access the constant declaration's address elsewhere in the code, within a scope equal, or less than where the constant declaration was made.</p>
+</li>
+</ul>
+<h3 id="7-take-note-of-variable-shadowing"><a class="header" href="#7-take-note-of-variable-shadowing">7. Take note of variable shadowing</a></h3>
+<p>E.g,</p>
+<pre><code>  fn main() {
+    let spaces = &quot;     &quot;;
+    let spaces = spaces.len();
+    let a = 7;
+    let a = a + 1;
+    {
+      let a = a * 2; // 16
+      println!(&quot;The value of a in this inner scope is: {}&quot;, a);
+    }
+    println!(&quot;The value of a is: {}&quot;, a); // 8
+  }
+</code></pre>
+<h3 id="8-take-a-look-at-this-code"><a class="header" href="#8-take-a-look-at-this-code">8. Take a look at this code;</a></h3>
+<p>let mut spaces = &quot;    &quot;;
+spaces = spaces.len();
+..and decide if Rust lets you mutate types, as done here (from string to number)</p>
+<p>No, such operation would cause a compilation error</p>
+<h3 id="9-mention-two-data-type-subsets-in-rust"><a class="header" href="#9-mention-two-data-type-subsets-in-rust">9. Mention two data type subsets in Rust</a></h3>
+<ul>
+<li>scaler</li>
+<li>compound</li>
+</ul>
+<h3 id="10-what-does-the-stdio-code-snippet-relative-to-io-mean"><a class="header" href="#10-what-does-the-stdio-code-snippet-relative-to-io-mean">10. What does the 'stdio()' code snippet, relative to 'io' mean?</a></h3>
+<p>io::stdin()
+..mean?</p>
+<p>It means &quot;stdin&quot; is an associated function that is implemented on type &quot;io&quot; that is being accessed.</p>
+<h3 id="11-a-scaler-type-represents-a-what"><a class="header" href="#11-a-scaler-type-represents-a-what">11. A scaler type represents a what?</a></h3>
+<p>A single value.</p>
+<h3 id="12-what-are-the-four-primary-scaler-types-in-rust"><a class="header" href="#12-what-are-the-four-primary-scaler-types-in-rust">12. What are the four primary scaler types in Rust?</a></h3>
+<ul>
+<li>integers</li>
+<li>foating point numbers</li>
+<li>Booleans</li>
+<li>characters</li>
+</ul>
+<h3 id="13-list-all-the-unsigned-integer-types-available-to-you-in-rust"><a class="header" href="#13-list-all-the-unsigned-integer-types-available-to-you-in-rust">13. List all the unsigned integer types available to you in Rust</a></h3>
+<p>They are:</p>
+<ul>
+<li>u8</li>
+<li>u16</li>
+<li>u32</li>
+<li>u64</li>
+<li>u128</li>
+<li>usize (has a length arch)</li>
+</ul>
+<h3 id="14-list-all-the-signed-integer-types-available-to-you-in-rust"><a class="header" href="#14-list-all-the-signed-integer-types-available-to-you-in-rust">14. List all the signed integer types available to you in Rust</a></h3>
+<p>They are:</p>
+<ul>
+<li>i8</li>
+<li>i16</li>
+<li>i32</li>
+<li>i64</li>
+<li>i128</li>
+<li>isize (has a arch variable-length)</li>
+</ul>
+<h3 id="15-what-is-the-difference-between-a-signed-integer-and-an-unsigned-integer-type"><a class="header" href="#15-what-is-the-difference-between-a-signed-integer-and-an-unsigned-integer-type">15. What is the difference between a signed integer and an unsigned integer type?</a></h3>
+<p>A signed integer is usually used to represent and store negative numbers. Note that you can also store positive numbers using a signed integer type as well.
+Whereas, an unsigned integer type is used to represent and store positive numbers only.</p>
+<h3 id="16-what-is-the-range-of-possible-numbers-that-a-signed-integer-of-a-given-type-is-able-to-store"><a class="header" href="#16-what-is-the-range-of-possible-numbers-that-a-signed-integer-of-a-given-type-is-able-to-store">16. What is the range of possible numbers that a signed integer of a given type is able to store.</a></h3>
+<p>Representing the bit length of the signed integer type with character 'n', we can calculate the range of values possible using the formula;
+-(2^(n-1)) to 2^(n-1) - 1
+For example;
+i8 can store a range of..
+-(2^(8-1)) to 2(^8-1) - 1
+= -2(^7) to 2(^7) - 1
+= -128 to 128 - 1
+= -128 to 127 integer values.</p>
+<h3 id="17-what-is-the-range-of-possible-numbers-that-an-unsigned-integer-of-a-given-type-is-able-to-store"><a class="header" href="#17-what-is-the-range-of-possible-numbers-that-an-unsigned-integer-of-a-given-type-is-able-to-store">17. What is the range of possible numbers that an unsigned integer of a given type is able to store.</a></h3>
+<p>Representing the bit length of the signed integer type with character 'n', we can calculate the range of values possible using the formula;
+0 to 2^n - 1
+For example;
+u8 can store a range of..
+0 to 2^8 - 1
+= 0 to 256 - 1
+= 0 to 255 integer values.</p>
+<h3 id="18-what-does-the-isize-and-usize-integer-types-depend-on"><a class="header" href="#18-what-does-the-isize-and-usize-integer-types-depend-on">18. What does the &quot;isize&quot; and &quot;usize&quot; integer types depend on?</a></h3>
+<p>The architecture of the computer your program is running on, which is denoted as &quot;arch&quot;. For example, 64 bits if you're on a 64-bit architecture and 32 bits if you're on a 32-bit architecture.</p>
+<h3 id="19-what-separator-can-you-use-in-the-representation-of-integer-values-in-rust-that-would-be-ignored-by-the-rust-compiler-and-not-affect-the-literal-value-you-specify"><a class="header" href="#19-what-separator-can-you-use-in-the-representation-of-integer-values-in-rust-that-would-be-ignored-by-the-rust-compiler-and-not-affect-the-literal-value-you-specify">19. What separator can you use in the representation of integer values in Rust, that would be ignored by the Rust compiler, and not affect the literal value you specify?</a></h3>
+<p>The underscore _
+With it, you can represent literal value 1000 either as 1000 or as 1_000. They both specify the same integer literal value.</p>
+<h3 id="20-write-an-example-of-a-decimal-base-10-integer-literal-value"><a class="header" href="#20-write-an-example-of-a-decimal-base-10-integer-literal-value">20. Write an example of a Decimal (base 10) integer literal value</a></h3>
+<p>98_222</p>
+<h3 id="21-give-an-example-of-a-hex-base-16-integer-literal-value"><a class="header" href="#21-give-an-example-of-a-hex-base-16-integer-literal-value">21. Give an example of a Hex (base 16) integer literal value</a></h3>
+<p>0xff</p>
+<h3 id="22-write-out-an-example-of-a-octal-base-8-integer-literal-value"><a class="header" href="#22-write-out-an-example-of-a-octal-base-8-integer-literal-value">22. Write out an example of a Octal (base 8) integer literal value</a></h3>
+<p>0o77</p>
+<h3 id="23-give-an-example-of-a-binary-base-2-integer-literal-value"><a class="header" href="#23-give-an-example-of-a-binary-base-2-integer-literal-value">23. Give an example of a Binary (base 2) integer literal value</a></h3>
+<p>0b1111_0000</p>
+<h3 id="24-write-an-example-of-a-byte-u8-only-integer-literal-value"><a class="header" href="#24-write-an-example-of-a-byte-u8-only-integer-literal-value">24. Write an example of a Byte (u8 only) integer literal value</a></h3>
+<p>b'A'</p>
+<h3 id="25-what-do-you-do-when-you-do-not-know-which-type-of-integer-to-use"><a class="header" href="#25-what-do-you-do-when-you-do-not-know-which-type-of-integer-to-use">25. What do you do when you do not know which type of integer to use?</a></h3>
+<p>Don't specify an integer type, which will cause your program to use Rust's default integer type of choice.</p>
+<h3 id="26-what-is-rusts-default-integer-type-of-choice"><a class="header" href="#26-what-is-rusts-default-integer-type-of-choice">26. What is Rust's default integer type of choice?</a></h3>
+<p>i32</p>
+<h3 id="27-in-what-primary-situation-would-you-use-integer-types-isize-or-usize"><a class="header" href="#27-in-what-primary-situation-would-you-use-integer-types-isize-or-usize">27. In what primary situation would you use integer types isize or usize?</a></h3>
+<p>They are used as pointer offsets to any location in memory. isize is an alternative to usize.
+The difference is that isize is a pointer-sized signed integer type, while usize is a pointer-sized unsigned integer type.
+They both have sizes which depends on the arch of your machine (32bit or 64bit).</p>
+<h3 id="28-explain-what-integer-overflow-is-with-an-example-illustration"><a class="header" href="#28-explain-what-integer-overflow-is-with-an-example-illustration">28. Explain what integer overflow is with an example illustration</a></h3>
+<p>Let's say you have a variable of type u8 that can hold values between 0 and 255. Now, if you try to change the variable to a value outside of that range, such as 256, Integer overflow will occur.</p>
+<h3 id="29-how-does-rust-react-to-integer-overflow-scenerios"><a class="header" href="#29-how-does-rust-react-to-integer-overflow-scenerios">29. How does Rust react to integer overflow scenerios?</a></h3>
+<p>In debug mode: Your program will panic at runtime and then exit with an error, when it checks your program for integer overflow.
+In release mode: It won't panic. Rather, two's complement wrapping occurs. For example, in the case of a u8, the value 256 becomes 0. In case of u8 with an ascribed value 257, becomes 1.
+N.B: Overflow behavior is actually controlled by the '-C overflow-checks' rustc option, and by the 'overflow-checks' option in the Cargo profiles section. You really can change the overflow behavior regardless of the profile.</p>
+<h3 id="30-relying-on-twos-complement-wrapping-in-overflow-for-code-in-release-mode-could-result-to-code-with-unexpected-behavior-true-or-false"><a class="header" href="#30-relying-on-twos-complement-wrapping-in-overflow-for-code-in-release-mode-could-result-to-code-with-unexpected-behavior-true-or-false">30. Relying on two's complement wrapping in overflow, for code in release mode could result to code with unexpected behavior, true or false?</a></h3>
+<p>True.</p>
+<h3 id="31-what-methods-are-provided-by-the-rust-standard-libray-for-primitive-numeric-types-to-handle-the-possibility-of-overflow"><a class="header" href="#31-what-methods-are-provided-by-the-rust-standard-libray-for-primitive-numeric-types-to-handle-the-possibility-of-overflow">31. What methods are provided by the Rust standard libray for primitive numeric types, to handle the possibility of overflow?</a></h3>
+<ul>
+<li>Wrap all modes with the..
+wrapping_*
+..methods, such as..
+wrapping_add</li>
+<li>Return the..
+None
+..value if there is overflow with the..
+checked_* methods</li>
+<li>Return the value and a boolean indicating whether there was overflow with the..
+overflowing_*
+..methods
+Saturate at the value's minimum or maximum values with..
+saturating_*
+methods.
+Learn more about these later.</li>
+</ul>
+<h3 id="32-what-floating-point-types-are-available-in-rust"><a class="header" href="#32-what-floating-point-types-are-available-in-rust">32. What floating-point types are available in Rust?</a></h3>
+<p>f32 &amp; f64</p>
+<h3 id="33-what-is-default-floating-point-type-used-by-rust-provided-you-do-not-specify-any"><a class="header" href="#33-what-is-default-floating-point-type-used-by-rust-provided-you-do-not-specify-any">33. What is default floating-point type used by Rust, provided you do not specify any?</a></h3>
+<p>f64</p>
+<h3 id="34-what-is-or-are-the-differences-between-f32--f64"><a class="header" href="#34-what-is-or-are-the-differences-between-f32--f64">34. What is, or are the differences between f32 &amp; f64?</a></h3>
+<ul>
+<li>Although they both have roughtly the same speed, f64 however has superior precision.</li>
+<li>f32 is a single-precision float, whereas f64 has double precision.</li>
+</ul>
+<h3 id="35-are-all-floating-point-numbers-signed-or-unsigned"><a class="header" href="#35-are-all-floating-point-numbers-signed-or-unsigned">35. Are all floating point numbers signed or unsigned?</a></h3>
+<p>They are signed.</p>
+<h3 id="36-floating-point-numbers-are-represented-according-to-what-standard"><a class="header" href="#36-floating-point-numbers-are-represented-according-to-what-standard">36. Floating-point numbers are represented according to what standard?</a></h3>
+<p>The IEEE-754 standard.</p>
+<h3 id="37-demonstrate-creating-a-variable-with-an-annotated-float-integer-data-type"><a class="header" href="#37-demonstrate-creating-a-variable-with-an-annotated-float-integer-data-type">37. Demonstrate creating a variable with an annotated float integer data type</a></h3>
+<p>Here:
+fn main() {
+let x: f32 = 3.0 // f32 data type variable
+let y = 4.0 // f64 data type variable
+}</p>
+<h3 id="38-demonstrate-code-that-showcases-some-basic-numeric-integer-operations-you-can-perform-with-rust"><a class="header" href="#38-demonstrate-code-that-showcases-some-basic-numeric-integer-operations-you-can-perform-with-rust">38. Demonstrate code that showcases some basic numeric (integer) operations you can perform with Rust</a></h3>
+<pre><code>  fn main() {
+    // addition
+    let _sum = 5 + 10;
+
+    // subtraction
+    let _difference = 95.5 - 4.3;
+
+    // multiplication
+    let _product = 4 * 30;
+
+    // division
+    let _quotient = 56.7 / 32.2;
+    let _floored = 2 / 3; // Results in 0
+
+    // remainder
+    let _remainder = 43 % 5;
+
+    println!(
+        &quot;addition: {} \ndifference: {} \nproduct: {} \nquotient: {} \nfloored: {} \nremainder: {}&quot;,
+        _sum, _difference, _product, _quotient, _floored, _remainder
+    )
+  }
+</code></pre>
+<h3 id="39-how-do-you-specify-a-char-character-data-type-variable-in-rust"><a class="header" href="#39-how-do-you-specify-a-char-character-data-type-variable-in-rust">39. How do you specify a char (character) data type variable in Rust?</a></h3>
+<p>By enclosing the character inside a pair of single quotes, like this:</p>
+<pre><code>  fn main() {
+    let c = 'z';
+    let z = 'Z';
+  }
+</code></pre>
+<h3 id="40-what-is-the-byte-size-of-the-char-data-type-in-rust"><a class="header" href="#40-what-is-the-byte-size-of-the-char-data-type-in-rust">40. What is the byte size of the &quot;char&quot; data type in Rust?</a></h3>
+<p>Four bytes.</p>
+<h3 id="41-what-does-the-char-data-type-represent-in-rust"><a class="header" href="#41-what-does-the-char-data-type-represent-in-rust">41. What does the &quot;char&quot; data type represent in Rust?</a></h3>
+<p>Unicode Scaler Value.</p>
+<h3 id="42-mention-sample-characters-that-rusts-char-data-type-can-represent"><a class="header" href="#42-mention-sample-characters-that-rusts-char-data-type-can-represent">42. Mention sample characters that Rust's &quot;char&quot; data type can represent?</a></h3>
+<ul>
+<li>accented letters: Chinese, Japanese, Korean</li>
+<li>emojis</li>
+<li>zero-width spaces, as in: ''</li>
+</ul>
+<h3 id="43-what-is-the-range-of-unicode-scaler-values-in-rust"><a class="header" href="#43-what-is-the-range-of-unicode-scaler-values-in-rust">43. What is the range of Unicode Scaler Values in Rust?</a></h3>
+<p>U+0000 to U+D7FFF
+and..
+&amp;
+U+E0000 to U+10FFFF
+..inclusive.</p>
+<h3 id="44-what-are-compound-types-in-rust"><a class="header" href="#44-what-are-compound-types-in-rust">44. What are Compound types in Rust?</a></h3>
+<p>They are a mechanism that allows you to group multiple values into one type.</p>
+<h3 id="45-what-are-the-two-primitive-compound-types-in-rust"><a class="header" href="#45-what-are-the-two-primitive-compound-types-in-rust">45. What are the two primitive compound types in Rust?</a></h3>
+<ul>
+<li>tuples</li>
+<li>arrays</li>
+</ul>
+<h3 id="46-what-is-a-rust-tuple"><a class="header" href="#46-what-is-a-rust-tuple">46. What is a Rust tuple?</a></h3>
+<p>A tuple is a compound type that gives you the means to group together a number of values of arbitrary types into one. It has a fixed length, so they cannot grow or shrink in size.</p>
+<h3 id="47-demonstrate-code-that-creates-a-rust-tuple"><a class="header" href="#47-demonstrate-code-that-creates-a-rust-tuple">47. Demonstrate code that creates a Rust tuple</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1); // creation of a tuple variable called 'tup'. Note that 'tup' here has annotated data types, but you don't have to do so all the time
+  }
+</code></pre>
+<h3 id="48-demonstrate-code-that-uses-pattern-matching-to-destructure-a-tuples-constituent-values-into-separate-variables"><a class="header" href="#48-demonstrate-code-that-uses-pattern-matching-to-destructure-a-tuples-constituent-values-into-separate-variables">48. Demonstrate code that uses pattern matching to destructure a tuple's constituent values into separate variables</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let tup = (500, 6.4, 1);
+    let (x, y, z) = tup;
+    println!(&quot;The value of y is: {}&quot;, y); // Outputs 6.4
+  }
+</code></pre>
+<h3 id="49-demonstrate-code-that-accesses-a-tuples-constituent-values-using-a-period-to-acesss-specific-tuple-indices-instead-of-pattern-matching-based-destructuring"><a class="header" href="#49-demonstrate-code-that-accesses-a-tuples-constituent-values-using-a-period-to-acesss-specific-tuple-indices-instead-of-pattern-matching-based-destructuring">49. Demonstrate code that accesses a tuple's constituent values, using a period to acesss specific tuple indices, instead of pattern-matching based destructuring</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+    let five_hundred = x.0; // 500
+    let six_point_four = x.1; // 6.4
+    let one = x.2; // 1
+  }
+</code></pre>
+<h3 id="50-what-is-a-unit-type-in-rust"><a class="header" href="#50-what-is-a-unit-type-in-rust">50. What is a 'unit type' in Rust?</a></h3>
+<p>It is a tuple without any value, represented by..
+()</p>
+<h3 id="51-what-is-the-value-of-the-unit-type-in-rust-called"><a class="header" href="#51-what-is-the-value-of-the-unit-type-in-rust-called">51. What is the value of the 'unit type' in Rust called?</a></h3>
+<p>'unit value', also represented by..
+()</p>
+<h3 id="52-what-do-functions-return-when-they-dont-have-an-explicitly-returned-value-or-lifetime-annotated-reference"><a class="header" href="#52-what-do-functions-return-when-they-dont-have-an-explicitly-returned-value-or-lifetime-annotated-reference">52. What do functions return when they don't have an explicitly returned value or lifetime annotated reference?</a></h3>
+<p>A unit value, as in;</p>
+<p>()</p>
+<h3 id="53-what-is-a-rust-array"><a class="header" href="#53-what-is-a-rust-array">53. What is a Rust array?</a></h3>
+<p>An array is a compound type that gives you the means to group together a number of values with the same type into one.
+It has a fixed length, so they cannot grow or shrink in size.</p>
+<h3 id="54-demonstrate-code-that-creates-a-rust-array"><a class="header" href="#54-demonstrate-code-that-creates-a-rust-array">54. Demonstrate code that creates a Rust array</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let a = [1, 2, 3, 4, 5];
+  }
+</code></pre>
+<p>Another example:</p>
+<pre><code>  fn main() {
+    let a: [i32; 4] = [3, 4, 5, 6];
+  }
+</code></pre>
+<h3 id="55-when-in-what-two-cases-would-you-typically-use-an-array-in-rust-code"><a class="header" href="#55-when-in-what-two-cases-would-you-typically-use-an-array-in-rust-code">55. When, in what two cases, would you typically use an array in Rust code?</a></h3>
+<ul>
+<li>When you want data allocated on the stack rather than on the heap.</li>
+<li>When you want to ensure that you always have a fixed number of elements.</li>
+</ul>
+<h3 id="56-when-may-you-choose-a-vector-over-an-array"><a class="header" href="#56-when-may-you-choose-a-vector-over-an-array">56. When may you choose a vector over an array?</a></h3>
+<ul>
+<li>If you're unsure whether to use an array or a vector.</li>
+<li>If you want to be able to shrink or grow the size of what holds your data.</li>
+</ul>
+<h3 id="57-what-is-the-major-difference-between-an-array-and-a-vector"><a class="header" href="#57-what-is-the-major-difference-between-an-array-and-a-vector">57. What is the major difference between an array and a vector?</a></h3>
+<p>An array's size can never increase nor decrease, whereas, a vector's size can.</p>
+<h3 id="58-demonstrate-code-that-initializes-an-array-to-contain-the-same-value-for-each-element-by-specifying-the-initial-value-at-its-point-of-creation"><a class="header" href="#58-demonstrate-code-that-initializes-an-array-to-contain-the-same-value-for-each-element-by-specifying-the-initial-value-at-its-point-of-creation">58. Demonstrate code that initializes an array to contain the same value for each element by specifying the initial value at its point of creation</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let a = [3; 5];
+  }
+</code></pre>
+<p>The code here above, creates an array called 'a' that will contain 5 elements that will all be set to the value of 3 initially. The code is equivalent to writing..
+let a = [3, 3, 3, 3, 3];
+..but in a more concise way.</p>
+<h3 id="59-demonstrate-code-that-access-elements-of-an-array-using-indexing-of-course"><a class="header" href="#59-demonstrate-code-that-access-elements-of-an-array-using-indexing-of-course">59. Demonstrate code that access elements of an array, using indexing of course!</a></h3>
+<p>Here:</p>
+<pre><code>  fn main() {
+    let a = [1, 2, 3, 4. 5];
+    let first = a[0];
+    let second = a[1];
+  }
+</code></pre>
+<p>In the above example, the variable 'first' will get the value 1 because that is the value at index [0] in the array, whereas, the variable named 'second' will get the value 2 from index [1] in the array.</p>
+<h3 id="60-what-happens-to-your-rust-program-when-you-try-to-access-an-array-by-an-index-greater-than-or-equal-to-the-length-figure-of-the-array"><a class="header" href="#60-what-happens-to-your-rust-program-when-you-try-to-access-an-array-by-an-index-greater-than-or-equal-to-the-length-figure-of-the-array">60. What happens to your Rust program when you try to access an array by an index greater than or equal to the length figure of the array?</a></h3>
+<p>Rust panics and exit your program.</p>
+<p>Completed On: Wednesday, May 4, 2022. 10:24PM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_2/chapter_2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_4/chapter_4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_2/chapter_2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_4/chapter_4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

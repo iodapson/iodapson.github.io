@@ -1,0 +1,686 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Generic Types, Traits, and Lifetimes - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html" class="active"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="generic-types-traits-and-lifetimes"><a class="header" href="#generic-types-traits-and-lifetimes">Generic Types, Traits, and Lifetimes</a></h1>
+<h4 id="1-what-does-generics-allow-us-rust-programmers-to-do"><a class="header" href="#1-what-does-generics-allow-us-rust-programmers-to-do">1. What does generics allow us Rust programmers to do?</a></h4>
+<p>It allows us to replace specific types with a placeholder that represents multiple types to remove code duplication.</p>
+<h4 id="2-what-does-traits-lets-us-rust-coders-do"><a class="header" href="#2-what-does-traits-lets-us-rust-coders-do">2. What does traits lets us Rust coders do?</a></h4>
+<p>It gives us the capability of defining behavior in a generic way. You can combine traits with generic types (could be enum or struct), to accept only those types that have a particular behavior, as opposed to just any type.</p>
+<ul>
+<li>A trait defines functionality a particular type has and can share with other types.</li>
+<li>Traits can be used to define shared behavior in an abstract way.</li>
+<li>Trait bounds can specify that a generic type can be any type that has certain behavior.</li>
+</ul>
+<h4 id="3-what-are-lifetimes"><a class="header" href="#3-what-are-lifetimes">3. What are lifetimes?</a></h4>
+<p>They are a variety of generics that give the compiler information about how references relate to each other.</p>
+<ul>
+<li>Lifetimes allow us to give the compiler enough information about borrowed values so that it can ensure references will be valid in more siturations that it could without our help.</li>
+<li>They define the relationship between types in a function of sturct for example.</li>
+<li>They prevent dangling references in a function.</li>
+</ul>
+<h4 id="4-highlight-cod-syntax-that-creates-a-function-that-uses-a-generic-type-parameter"><a class="header" href="#4-highlight-cod-syntax-that-creates-a-function-that-uses-a-generic-type-parameter">4. Highlight cod syntax that creates a function that uses a generic type parameter</a></h4>
+<p>Here:</p>
+<pre><code>  fn largest&lt;T&gt; (list: &amp;[T]) -&gt; T {
+    ...
+  }
+</code></pre>
+<p>We read this definition as: the function 'largest' is generic over some type T.
+This fucntion has one parameter name 'list', which is a slice of values of type 'T'. The 'largest' function will return a value of the same type 'T'.</p>
+<h4 id="5-demonstrate-code-that-finds-the-largest-number-of-a-list-of-numbers-whose-type-is-unknown-beforehand"><a class="header" href="#5-demonstrate-code-that-finds-the-largest-number-of-a-list-of-numbers-whose-type-is-unknown-beforehand">5. Demonstrate code that finds the largest number of a list of numbers whose type is unknown beforehand.</a></h4>
+<p>Note that the function will have to introduce a generic with a trait bound. The trait bound is necessary to tell Rust that only concrete types which support comparisons can be applied to the function</p>
+<p>Here:</p>
+<pre><code>  // incomplete solution, it has no trait bound, won't compile
+  fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {
+    let mut largest = list[0]
+    for &amp;item in list {
+      if item &gt; largest {
+        largest = item;
+      }
+    }
+    largest
+  }
+  fn main() {
+    let number_list = vec![34, 50, 25, 100, 100, 65];
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+    let char_list = vec!['y', 'm', 'a', 'q'];
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is {}&quot;, result);
+  }
+</code></pre>
+<h4 id="6-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-a-structs-definition"><a class="header" href="#6-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-a-structs-definition">6. Demonstrate code that utilizes at least one generic type parameter in a Struct's definition</a></h4>
+<p>Here:</p>
+<pre><code>  struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+  }
+  fn main() {
+    let integer = Point { x:5, y: 10 };
+    let float = Point { x: 1, y: 4 };
+  }
+</code></pre>
+<h4 id="7-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-an-enums-definition"><a class="header" href="#7-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-an-enums-definition">7. Demonstrate code that utilizes at least one generic type parameter in an enum's definition</a></h4>
+<p>Here:</p>
+<pre><code>  enum Option&lt;T&gt; {
+    Some(T),
+    None,
+  }
+</code></pre>
+<p>Another example code:</p>
+<pre><code>  enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+  }
+</code></pre>
+<h4 id="8-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-the-definition-of-a-struct-named-point-and-the-implementation-of-a-method-on-the-same-struct-point-named-x-which-returns-the-generic-type-introduced"><a class="header" href="#8-demonstrate-code-that-utilizes-at-least-one-generic-type-parameter-in-the-definition-of-a-struct-named-point-and-the-implementation-of-a-method-on-the-same-struct-point-named-x-which-returns-the-generic-type-introduced">8. Demonstrate code that utilizes at least one generic type parameter in the definition of a struct named 'Point', and the implementation of a method on the same struct 'Point', named 'x', which returns the generic type introduced.</a></h4>
+<p>Here:</p>
+<pre><code>  struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+  }
+  impl&lt;T&gt; Point&lt;T&gt; {
+    fn x(&amp;self) -&gt; T {
+      &amp;self.x
+    }
+  }
+  fn main() {
+    let p = Point { x: 5, y: 10 };
+    println!(&quot;p.x = {}&quot;, p.x());
+  }
+</code></pre>
+<p>Note the decaration of T just after 'impl' so you can use T to specify that you're implementing methods on the type 'Point<T>'.</p>
+<ul>
+<li>By declaring T as genric type after 'impl', Rust can identify that the type in the angle brackets in 'Point' is a generic type rather thabn a concrete type.</li>
+<li>A different name could have been chosen for this generic parameter than the generic parameter declared in the struct definition, but using the same name is conventional.</li>
+<li>Methods written within an 'impl' that declares the generic type will be defined on any instance of the type, no matter what concrete type ends up subsituting for the generic type.</li>
+</ul>
+<h4 id="9-demonstrate-code-that-implements-a-method-mixup-on-a-struct-point-that-introduce-two-different-generic-types-in-its-definition"><a class="header" href="#9-demonstrate-code-that-implements-a-method-mixup-on-a-struct-point-that-introduce-two-different-generic-types-in-its-definition">9. Demonstrate code that implements a method 'mixup' on a struct 'Point' that introduce two different generic types in its definition.</a></h4>
+<p>Note that method 'mixup' should itself accept a single parameter that takes another struct 'Point', point2, so that the method can return a mix of the generic types in its own point and point2</p>
+<p>Here:</p>
+<pre><code>  struct Point&lt;X1, Y1&gt; {
+    x: X1,
+    y: Y1,
+  }
+  impl&lt;X1, Y1&gt; Point&lt;X1, Y1&gt; {
+    fn mixup&lt;X2, Y2&gt;(self, other: Point&lt;X2, Y2&gt;) -&gt; Point&lt;X1, Y2&gt; {
+      Point {
+        x: self.x,
+        y: other.y,
+      }
+    }
+  }
+  fn main() {
+    let p1 = Point { x: 5, y: 10.4}
+    let p2 = Point { x: &quot;Hello&quot;, y: 'c' };
+    let p3 = p1.mixup(p2);
+    println!(&quot;p3.x = {}, p3.y = {}&quot;, p3.x, p3.y);
+  }
+</code></pre>
+<h4 id="10-would-using-generic-type-parameters-in-your-rust-code-make-the-code-run-any-slower"><a class="header" href="#10-would-using-generic-type-parameters-in-your-rust-code-make-the-code-run-any-slower">10. Would using generic type parameters in your Rust code make the code run any slower?</a></h4>
+<p>No.</p>
+<h4 id="11-how-is-it-possible-that-rust-code-that-utilize-generics-dont-run-slower"><a class="header" href="#11-how-is-it-possible-that-rust-code-that-utilize-generics-dont-run-slower">11. How is it possible that Rust code that utilize generics don't run slower?</a></h4>
+<p>It's application of Monomorphization.</p>
+<h4 id="12-what-is-monomorphization-of-code"><a class="header" href="#12-what-is-monomorphization-of-code">12. What is monomorphization of code?</a></h4>
+<p>It is the process of turning generic code into specific code by filling in the concrete types that are used when compiled.
+The compiler looks at all the places where generic code is called and generates code for the concrete types the generic code is called with.
+For example, take a look at this 'Option<T>' enum;</p>
+<pre><code>  let integer = Some(5);
+  let float = Some(5.0);
+</code></pre>
+<p>..becomes;</p>
+<pre><code>  enum Option_i32 {
+    Some(i32),
+    None,
+  }
+  enum Option_f64 {
+    Some(f64),
+    None,
+  }
+  fn main() {
+    let integer = Option_i32::Some(5);
+    let float = Option_f64::Some(5.0);
+  }
+</code></pre>
+<p>The generic 'Option<T>' is replaced with the specific definitions created by the compiler. Because Rust compiles generic code into code that specifies the type in each instance,no runtime cost is paid for using generics. When the code runs, it performs just as it would if we had duplicated each definition by hand.
+The process of monomorphization makes Rust's generics extremely efficient at runtime.</p>
+<h4 id="13-describe-a-traits-declaration-structure"><a class="header" href="#13-describe-a-traits-declaration-structure">13. Describe a trait's declaration structure</a></h4>
+<ul>
+<li>You use the 'trait' keyword to create a trait</li>
+<li>You specify the methods of the trait one per line, each ending with a semi-colon without any implementation, it just the function alonside its parameter(s) and return type only.</li>
+</ul>
+<h4 id="14-demonstrate-code-that-creates-a-public-trait-named-summary"><a class="header" href="#14-demonstrate-code-that-creates-a-public-trait-named-summary">14. Demonstrate code that creates a public trait named 'Summary'</a></h4>
+<p>Here:</p>
+<pre><code>  pub trait Summary {
+    fn summarize(&amp;self) -&gt; String;
+  }
+</code></pre>
+<p>The compiler will enforce that any type that has the 'Summary' trait will have the method 'summarize' defined with this signature exactly.</p>
+<h4 id="15-what-do-you-do-with-trait-definitions"><a class="header" href="#15-what-do-you-do-with-trait-definitions">15. What do you do with trait definitions?</a></h4>
+<p>You implement them for entities such as a struct, an enum, e.t.c..</p>
+<h4 id="16-demonstrate-code-that-implements-a-trait-summary-on-a-struct-newsarticle-and-another-struct-tweet-by-means-of-the-for-keyword"><a class="header" href="#16-demonstrate-code-that-implements-a-trait-summary-on-a-struct-newsarticle-and-another-struct-tweet-by-means-of-the-for-keyword">16. Demonstrate code that implements a trait 'Summary' on a struct 'NewsArticle' and another struct 'Tweet', by means of the 'for' keyword</a></h4>
+<p>Here:</p>
+<pre><code>  // Imagine having Summary and Tweet inside a module with file name 'aggregator', which is compiled into crate 'lib.rs'
+  pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+  }
+  impl Summary for NewsArticle {
+    fn summarize(&amp;self) -&gt; String {
+      format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+  }
+  pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+  }
+  impl Summary for Tweet {
+    fn summarize(&amp;self) -&gt; String {
+      format!(&quot;{}: {}&quot;, self.username, self.content)
+    }
+  }
+  // time to use the 'aggregator' library crate inside a consumer binary crate
+  use aggregator::{Summary, Tweet};
+  fn main() {
+    let tweet = Tweet {
+      username: String::from(&quot;horse_ebooks&quot;),
+      content: String::from(&quot;of course, as you probably already know, people&quot;,
+      ),
+      reply: false,
+      retweet: false,
+    };
+    println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
+  }
+</code></pre>
+<h4 id="17-explain-the-restriction-in-how-traits-work-with-regards-to-a-give-entity-implemented-on-it-and-crates"><a class="header" href="#17-explain-the-restriction-in-how-traits-work-with-regards-to-a-give-entity-implemented-on-it-and-crates">17. Explain the restriction in how traits work with regards to a give entity implemented on it, and crates</a></h4>
+<p>There can be only one crate that implements a particular entity on a trait. You can't have multiple implementation of a given trait for a given type in anyway.
+This restriction is part of a property called coherence, and more specifically the 'orphan rule', so named because the parent type is not present.</p>
+<h4 id="18-what-does-the-orphan-rule-of-rust-ensure"><a class="header" href="#18-what-does-the-orphan-rule-of-rust-ensure">18. What does the orphan rule of Rust ensure?</a></h4>
+<p>Ensures that other people's code can't break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn't know which implementation to use.</p>
+<h4 id="19-demonstrate-code-that-creates-a-trait-with-a-method-with-a-default-implementation-that-is-its-signature-is-not-just-defined-it-is-implemented-as-well"><a class="header" href="#19-demonstrate-code-that-creates-a-trait-with-a-method-with-a-default-implementation-that-is-its-signature-is-not-just-defined-it-is-implemented-as-well">19. Demonstrate code that creates a trait with a method with a default implementation, that is, its signature is not just defined, it is implemented as well</a></h4>
+<p>Here:</p>
+<pre><code>  pub trait Summary {
+    fn summarize(&amp;self) -&gt; String {
+      String::from(&quot;(Read more...)&quot;)
+    }
+  }
+</code></pre>
+<h4 id="20-must-you-implement-every-method-inside-a-trait-without-default-implementations-when-you-implement-that-trait-on-a-given-type-eg-a-struct"><a class="header" href="#20-must-you-implement-every-method-inside-a-trait-without-default-implementations-when-you-implement-that-trait-on-a-given-type-eg-a-struct">20. Must you implement every method inside a trait without default implementations, when you implement that trait on a given type, e.g, a struct?</a></h4>
+<p>Yes.
+All methods inside a trait that has no default implementation must be implemented when their corresponding trait scope/parent is being implemented on a type.</p>
+<h4 id="21-demonstrate-code-that-implements-a-trait-with-a-method-summarize-with-default-implementation-on-a-struct-type-newsarticle-and-then-calls-summarize-on-an-instance-of-newsarticle"><a class="header" href="#21-demonstrate-code-that-implements-a-trait-with-a-method-summarize-with-default-implementation-on-a-struct-type-newsarticle-and-then-calls-summarize-on-an-instance-of-newsarticle">21. Demonstrate code that implements a trait with a method 'summarize' with default implementation, on a struct type 'NewsArticle', and then calls 'summarize' on an instance of 'NewsArticle'</a></h4>
+<p>Here:</p>
+<pre><code>  pub trait Summary {
+    fn summarize_author(&amp;self) -&gt; String;
+    // a default implemented method of Summary
+    fn summarize(&amp;self) -&gt; String {
+      String::from(&quot;(Read more...)&quot;)
+    }
+  }
+  pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+  }
+  impl Summarize for NewsArticle {
+    fn summarize_author(&amp;self) -&gt; String {
+      format!(&quot;@{}&quot;, self.author, self.location)
+    }
+  }
+  fn main() {
+    let article = NewsArticle {
+      headline: String::from(&quot;Penguins with the Stanley Cup Championship!&quot;),
+      location: String::from(&quot;Pittsburgh, PA, USA&quot;),
+      author: String::from(&quot;Iceburgh&quot;),
+      content: String::from(
+        &quot;The Pittsburgh Peguins once again are the best \
+        hockey team in the NHL.&quot;,
+      ),
+    };
+    println!(&quot;New article available! {}&quot;, article.summarize());
+  }
+</code></pre>
+<h4 id="23-demonstrate-code-that-specifies-that-the-parameter-item-of-a-given-function-notify-must-be-a-type-that-implements-a-given-trait-summary"><a class="header" href="#23-demonstrate-code-that-specifies-that-the-parameter-item-of-a-given-function-notify-must-be-a-type-that-implements-a-given-trait-summary">23. Demonstrate code that specifies that the parameter 'item', of a given function 'notify', must be a type that implements a given trait 'Summary</a></h4>
+<p>Here:</p>
+<pre><code>  pub fn notify (item: &amp;impl Summary) {
+    prinln!(&quot;Breaking news! {}&quot;, item.summarize());
+  }
+</code></pre>
+<p>The above code is syntax sugar for a trait bound.</p>
+<h4 id="24-demonstrate-code-that-utilizes-the-trait-bound-syntax-in-its-full-fledged-form"><a class="header" href="#24-demonstrate-code-that-utilizes-the-trait-bound-syntax-in-its-full-fledged-form">24. Demonstrate code that utilizes the trait bound syntax in its full-fledged form</a></h4>
+<p>Here:</p>
+<pre><code>  pub fn notify&lt;T: Summary&gt; (item: &amp;T) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+  }
+</code></pre>
+<h4 id="25-showcase-code-that-highlights-the-strengths-of-the-full-fledged-trait-bound-syntax-over-its-syntax-sugar-shorter-form-in-some-cases"><a class="header" href="#25-showcase-code-that-highlights-the-strengths-of-the-full-fledged-trait-bound-syntax-over-its-syntax-sugar-shorter-form-in-some-cases">25. Showcase code that highlights the strengths of the full fledged trait bound syntax over its syntax sugar (shorter) form, in some cases</a></h4>
+<p>Compare these two cases where multiple parameters need to be trait bound by the same trait:</p>
+<pre><code>  // trait bound, with syntax sugar
+  pub fn notify(item1: &amp;impl Summary, item2: &amp;impl Summary) {
+    ...
+  }
+  // trait bound, with no syntax sugar
+  pub fn notify&lt;T: Summary&gt;(item1: &amp;T, item2: &amp;T) {
+    ...
+  }
+</code></pre>
+<p>Obviously, the trait bound, with no syntax sugar is shorter now in this case scenerio, and is arguable easier to read.</p>
+<h4 id="26-demonstrate-function-code-that-utilizes-a-trait-bound-whereby-there-are-more-that-one-trait-bound-for-a-given-parameter-that-is-the-paramater-of-the-function-specifies-that-arguments-passed-in-must-implement-a-number-of-traits-not-just-one-as-was-the-case-in-number-24-and-25"><a class="header" href="#26-demonstrate-function-code-that-utilizes-a-trait-bound-whereby-there-are-more-that-one-trait-bound-for-a-given-parameter-that-is-the-paramater-of-the-function-specifies-that-arguments-passed-in-must-implement-a-number-of-traits-not-just-one-as-was-the-case-in-number-24-and-25">26. Demonstrate function code that utilizes a trait bound, whereby there are more that one trait bound for a given parameter. That is, the paramater of the function specifies that arguments passed in must implement a number of traits, not just one, as was the case in number 24 and 25</a></h4>
+<p>Here:</p>
+<pre><code>  // trait bound, with syntax sugar
+  pub fn notify(item: &amp;(impl Summary + Display)) {
+    ...
+  }
+  // trait bound, without syntax sugar
+  pub fn notify&lt;T: Summary + Display&gt; (item: &amp;T) {
+    ...
+  }
+</code></pre>
+<h4 id="27-sometimes-function-code-that-utilize-trait-bounds-especially-for-multiple-types-used-in-two-or-more-parameters-in-the-function-can-make-your-code-look-cluttered"><a class="header" href="#27-sometimes-function-code-that-utilize-trait-bounds-especially-for-multiple-types-used-in-two-or-more-parameters-in-the-function-can-make-your-code-look-cluttered">27. Sometimes function code that utilize trait bounds, especially for multiple types used in two or more parameters in the function can make your code look cluttered;</a></h4>
+<p>Demonstrate code to unclutter such code</p>
+<pre><code>  // the clutter version
+  fn some_function&lt;T: Display + Clone, U: Clone + Debug&gt; (t: &amp;T, u: &amp;U) -&gt; i32 {
+    ...
+  }
+  // the uncluttered version
+  fn some_function&lt;T, U&gt; (t: &amp;T, u: &amp;U) -&gt; i32
+    where T: Display + Clone,
+              U: Clone + Debug
+  {
+    ...
+  }
+</code></pre>
+<h4 id="28-demonstrate-function-code-that-specifies-that-the-function-returns-any-type-so-long-as-it-implements-a-trait-in-this-case-the-trait-is-called-summary"><a class="header" href="#28-demonstrate-function-code-that-specifies-that-the-function-returns-any-type-so-long-as-it-implements-a-trait-in-this-case-the-trait-is-called-summary">28. Demonstrate function code that specifies that the function returns any type so long as it implements a trait, in this case, the trait is called 'Summary'</a></h4>
+<p>Here:</p>
+<pre><code>  fn returns_summarizable() -&gt; impl Summary {
+    Tweet {
+      username: String::from(&quot;horse_ebooks&quot;),
+      content: String::from(
+      &quot;of course, as you probably already know, people&quot;,
+      ),
+      reply: false,
+      retweet: false,
+    }
+  }
+</code></pre>
+<h4 id="29-the-ability-to-specify-a-return-type-only-by-the-trait-is-implements-is-especially-useful-in-the-context-of-closures-and-iterators-true-or-false"><a class="header" href="#29-the-ability-to-specify-a-return-type-only-by-the-trait-is-implements-is-especially-useful-in-the-context-of-closures-and-iterators-true-or-false">29. The ability to specify a return type only by the trait is implements is especially useful in the context of closures and iterators, True or False?</a></h4>
+<p>True.</p>
+<h4 id="30-what-would-happen-if-you-mix-match-different-return-types-that-implement-the-same-trait-bound-return-type-inside-a-functions-declaration-as-in"><a class="header" href="#30-what-would-happen-if-you-mix-match-different-return-types-that-implement-the-same-trait-bound-return-type-inside-a-functions-declaration-as-in">30. What would happen if you mix-match different return types that implement the same trait bound return type inside a function's declaration, as in..</a></h4>
+<pre><code>  fn returns_summarizable(switch: bool) -&gt; impl Summary {
+    if switch {
+      NewsArticle {
+        ...
+      }
+    else {
+      Tweet {
+        ...
+      }
+    }
+  }
+</code></pre>
+<p>It would result in a compilation error, since there are two different possible types, even though they both implement Summary.
+There is better way to go about this though - returning different types that implement a particular trait, depending on the return value inside a condition, as attempted above.</p>
+<h4 id="31-demonstrate-code-that-creates-a-function-called-largest-which-accepts-a-borrowed-listvector-of-any-any-type-and-compares-the-constituent-values-inside-the-borrowed-listvector-to-return-the-largest-constituent-value"><a class="header" href="#31-demonstrate-code-that-creates-a-function-called-largest-which-accepts-a-borrowed-listvector-of-any-any-type-and-compares-the-constituent-values-inside-the-borrowed-listvector-to-return-the-largest-constituent-value">31. Demonstrate code that creates a function called 'largest' which accepts a borrowed list/vector of any any type, and compares the constituent values inside the borrowed list/vector, to return the largest constituent value</a></h4>
+<p>Here:</p>
+<pre><code>  fn largest&lt;T: PartialOrd + Copy&gt; (list: &amp;[T]) -&gt; T {
+    let mut largest = list[0];
+    for &amp;item in list {
+      if item &gt; largest {
+        largest = item;
+      }
+    }
+    largest
+  }
+  fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+    let char_list = vec!['y', 'm', 'a', 'q'];
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is {}&quot;, result);
+  }
+</code></pre>
+<h4 id="32-what-are-blanket-implementations"><a class="header" href="#32-what-are-blanket-implementations">32. What are blanket implementations?</a></h4>
+<p>They a implementations of a trait on any anytpe that satisfies one or more trait bounds.
+With blanket implementations, you can conditionally implement a trait for any type that implements another trait.</p>
+<ul>
+<li>Blanket implementations are extensively used in the Rust standard library.</li>
+</ul>
+<h4 id="33-demonstrate-blanket-implementation-code"><a class="header" href="#33-demonstrate-blanket-implementation-code">33. Demonstrate blanket implementation code</a></h4>
+<p>Here:</p>
+<pre><code>  impl&lt;T: Display&gt; TheTrait for T {
+    // --snip--
+  }
+</code></pre>
+<h4 id="34-showcase-the-tostring-trait-code-snippetsignarture-and-explain-it"><a class="header" href="#34-showcase-the-tostring-trait-code-snippetsignarture-and-explain-it">34. Showcase the ToString trait code snippet/signarture, and explain it</a></h4>
+<p>Here:</p>
+<pre><code>  impl&lt;T: Display&gt; ToString for T {
+    // --snip--
+  }
+</code></pre>
+<p>The standard library implements the 'ToString' trait on any type that implements the 'Display' trait.
+Therefore, the type that ToString is called on, must have a &quot;Display&quot; implementation in order for it to work.</p>
+<h4 id="35-where-do-blanket-implementations-appear-in-rust-documentation"><a class="header" href="#35-where-do-blanket-implementations-appear-in-rust-documentation">35. Where do blanket implementations appear in Rust documentation?</a></h4>
+<p>In the &quot;Implementors&quot; section of documentation.</p>
+<h4 id="36-every-reference-in-rust-has-a-lifetime-which-is-the-scope-for-which-that-reference-is-valid-true-or-false"><a class="header" href="#36-every-reference-in-rust-has-a-lifetime-which-is-the-scope-for-which-that-reference-is-valid-true-or-false">36. Every reference in Rust has a lifetime, which is the scope for which that reference is valid, true or false?</a></h4>
+<p>True.</p>
+<h4 id="37-what-is-the-main-aim-of-lifetimes"><a class="header" href="#37-what-is-the-main-aim-of-lifetimes">37. What is the main aim of lifetimes?</a></h4>
+<p>To prevent dangling references, which cause a program to reference data other than the dat it's intended to reference, for example, lifetimes prevent the dangling reference in the code below;</p>
+<pre><code>  {
+    let r;
+    {
+      let x = 5;
+      r = &amp;x;
+    } // r can't pull &amp;x, hence it holds a dangling reference
+    println!(&quot;r: {}&quot;, r);
+  }
+</code></pre>
+<p>N.B:
+The Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.</p>
+<h4 id="38-briefly-describe-how-the-rust-borrow-checker-works"><a class="header" href="#38-briefly-describe-how-the-rust-borrow-checker-works">38. Briefly describe how the Rust borrow checker works?</a></h4>
+<p>It checks the the lifetimes of two entities, 'a' and 'b' for example.
+If entity 'a' refers to entity 'b' or has a relationship with it, and entity 'a' also has a lifetime greater than that of entity 'b', then Rust will see this as an error.</p>
+<h4 id="39-highlight-the-syntax-of-lifetime-annotations"><a class="header" href="#39-highlight-the-syntax-of-lifetime-annotations">39. Highlight the syntax of lifetime annotations</a></h4>
+<p>Here:</p>
+<pre><code>  &amp;'a i32 // a reference with an explicity lifetime
+  &amp;'a mut i32 // a mutable reference with an explicit lifetime
+</code></pre>
+<h4 id="40-correct-the-following-code"><a class="header" href="#40-correct-the-following-code">40. Correct the following code;</a></h4>
+<pre><code>  fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
+    if x.len() &gt; y.len() {
+      x
+    } else {
+      y
+    }
+  }
+</code></pre>
+<p>..such that it does not have a dangling reference, i.e, it has lifetime annotations</p>
+<p>Here:</p>
+<pre><code>  fn longest&lt;'a&gt;(x: &amp;'a str) -&gt; &amp;'a str {
+    if x.len() &gt; y.len() {
+      x
+    } else {
+      y
+    }
+  }
+</code></pre>
+<ul>
+<li>The function signature tells Rust that for some lifetime 'a, the function takes two parameters, both of which are string slices that live at least as long as lifetime 'a.</li>
+<li>The function signature also tells Rust that the string slice returned from the function will live at least as long as lifetime 'a.
+In practice, it means that the lifetime of the reference returned by the 'longest' function is the same as the smaller of the lifetimes of the references passed in, and the borrow checker would reject any values that don't adhere to these constraints.</li>
+</ul>
+<h4 id="41-where-do-liftime-annotations-for-a-function-go"><a class="header" href="#41-where-do-liftime-annotations-for-a-function-go">41. Where do liftime annotations for a function go?</a></h4>
+<p>Inside the function signature, not in the function body.</p>
+<h4 id="42-state-why-the-following-function-would-not-compile"><a class="header" href="#42-state-why-the-following-function-would-not-compile">42. State why the following function would not compile;</a></h4>
+<pre><code>  fn longest&lt;'a&gt;(x: &amp;str, y: &amp;str) -&gt; &amp;'a str {
+    let result = String::from(&quot;really long string&quot;);
+    result.as_str()
+  }
+</code></pre>
+<p>It would not compile because if violates the lifteme rule which states that;
+A function's returned entity must refer to a value (not reference) within the function, provided the returned entity is a reference that does not refer to one of the parameters of the function.
+In other words,
+functions are only allowed to return either a value, or a reference that has a matching lifetime annotation with at least one of the function's parameters.
+Remember that you introduce a lifetime annotation into a funtion with the syntax &lt;'annotation-letter&gt;, as in;</p>
+<p>&lt;'a&gt;</p>
+<p>..for example.</p>
+<h4 id="43-demonstrate-code-that-annotates-a-struct-field-with-a-lifetime"><a class="header" href="#43-demonstrate-code-that-annotates-a-struct-field-with-a-lifetime">43. Demonstrate code that annotates a struct field with a lifetime</a></h4>
+<p>Here:</p>
+<pre><code>  struct ImportantExcerpt&lt;'a&gt; {
+    part: &amp;'a str,
+  }
+  fn main() {
+    let novel = String::from(&quot;Call me Ishmael. Some years ago...&quot;);
+    let first_sentence = novel.split('.').next().expect(&quot;Could not find a '.'&quot;); // This lifetime annotation of the struct 'ImportantExcerpt' means that an instance of 'ImportantExcerpt' can't outlive the refernece it holds in its 'part' field.
+  }
+</code></pre>
+<h4 id="44-the-patterns-programmed-into-rusts-analysis-of-references-are-called-the-what"><a class="header" href="#44-the-patterns-programmed-into-rusts-analysis-of-references-are-called-the-what">44. The patterns programmed into Rust's analysis of references are called the what?</a></h4>
+<p>&quot;Lifetime ellision rules&quot;.</p>
+<h4 id="45-what-are-lifetime-ellsion-rules-about"><a class="header" href="#45-what-are-lifetime-ellsion-rules-about">45. What are lifetime ellsion rules about?</a></h4>
+<p>They are a set of particular cases the compiler will consider to save you from writing verbose lifetime annotations. If your code fits these cases, you don't need to write the lifetimes explicitly.</p>
+<h4 id="46-what-are-lifetimes-on-function-or-method-parameters-called"><a class="header" href="#46-what-are-lifetimes-on-function-or-method-parameters-called">46. What are lifetimes on function or method parameters called?</a></h4>
+<p>Input lifetimes.</p>
+<h4 id="47-what-are-liftimes-on-return-values-called"><a class="header" href="#47-what-are-liftimes-on-return-values-called">47. What are liftimes on return values called?</a></h4>
+<p>Output lifetimes.</p>
+<h4 id="48-discuss-the-lifetime-ellision-rules"><a class="header" href="#48-discuss-the-lifetime-ellision-rules">48. Discuss the lifetime ellision rules</a></h4>
+<ul>
+<li>
+<p>Functions with one parameter, implicitly gets lifetime annotated, and if the function also has a return value, it too gets the same lifetime annotation as the single parameter.
+For example;</p>
+<p>fn first_word(s: &amp;str0 -&gt; &amp;str { ... }
+..to the compiler becomes
+fn first_word&lt;'a&gt;(s: &amp;'a str) =&gt; 'a str { ... }</p>
+</li>
+<li>
+<p>Functions with two parameters get implicity lifetime annotations of different kinds, hence the function's return type has to have an explicit lifetime annotation, especially if the returned value(s) is a reference.
+For example;</p>
+<p>fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str { ... }
+..to the compiler becomes;</p>
+<p>fn longest&lt;'a, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;str { ... }</p>
+</li>
+<li>
+<p>Methods, that is, functions which have a self parameter, and the self parameter is actually a reference to self or mut (as in, &amp;self or &amp;mut self), will have its return value(s) implicitly lifetime annoted with the same lifetime as that of the &amp;self or &amp;mut self parameter.
+For example;</p>
+</li>
+</ul>
+<pre><code>  impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
+    fn level(&amp;self) -&gt; &amp;str {
+      &quot;three&quot;
+    }
+  }
+</code></pre>
+<p>..to the comiler becomes;</p>
+<pre><code>  impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
+    fn level(&amp;'a self) -&gt; &amp;'a i32 {
+      &quot;three&quot;
+    }
+  }
+</code></pre>
+<h4 id="49-what-rust-syntax-is-used-to-lifetime-annotate-a-reference-such-that-the-reference-can-live-for-the-entire-durration-of-the-program"><a class="header" href="#49-what-rust-syntax-is-used-to-lifetime-annotate-a-reference-such-that-the-reference-can-live-for-the-entire-durration-of-the-program">49. What Rust syntax is used to lifetime annotate a reference such that the reference can live for the entire durration of the program</a></h4>
+<pre><code>'static
+</code></pre>
+<h4 id="50-all-string-literals-have-the-static-lifetime-true-or-false"><a class="header" href="#50-all-string-literals-have-the-static-lifetime-true-or-false">50. All string literals have the 'static lifetime, true or false?</a></h4>
+<p>True.</p>
+<h4 id="51-demonstrate-code-that-utilizes-the-static-syntax"><a class="header" href="#51-demonstrate-code-that-utilizes-the-static-syntax">51. Demonstrate code that utilizes the 'static syntax</a></h4>
+<p>Here:</p>
+<pre><code>  let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
+</code></pre>
+<h4 id="52-demonstrate-code-that-uses-generic-type-parameters-trait-bounds-and-lifetimes-together"><a class="header" href="#52-demonstrate-code-that-uses-generic-type-parameters-trait-bounds-and-lifetimes-together">52. Demonstrate code that uses generic type parameters, trait bounds, and lifetimes together</a></h4>
+<p>Here:</p>
+<pre><code>  use std::fmt::Display;
+  fn longest_with_an_announcement&lt;'a, T&gt; (
+    x: &amp;'a str,
+    y: &amp;'a str,
+    ann: T,
+  ) -&gt; &amp;'a str
+  where
+    T: Display,
+  {
+    println!(&quot;Announcement! {}
+, ann);
+    if x.len() &gt; y.len() {
+      x
+    } else {
+      y
+    }
+  }
+</code></pre>
+<p>The generic type T in the code above can be replaced with any concrete type that implements the 'Display' trait as specified by the 'where' clause.</p>
+<p>Completed On: Tuesday, June 6, 2022. 04:18PM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_12/chapter_12.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_14/chapter_14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_12/chapter_12.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_14/chapter_14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rust Cargo - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html" class="active"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rust-cargo"><a class="header" href="#rust-cargo">Rust Cargo</a></h1>
+<h4 id="1-what-is-rust-style-of-indentation"><a class="header" href="#1-what-is-rust-style-of-indentation">1. What is Rust style of indentation?</a></h4>
+<p>Indenting with four spaces, instead of a tab, or even two spaces.</p>
+<h5 id="2-what-does-an-exclamation-mark--with-a-variable-name-mean-in-rust"><a class="header" href="#2-what-does-an-exclamation-mark--with-a-variable-name-mean-in-rust">2. What does an exclamation mark (!) with a variable name mean in Rust?</a></h5>
+<p>It means you are calling a macro.</p>
+<h4 id="3-do-macros-follow-the-same-rules-as-functions-in-rust"><a class="header" href="#3-do-macros-follow-the-same-rules-as-functions-in-rust">3. Do macros follow the same rules as functions in Rust?</a></h4>
+<p>No, macros don't always follow the same rules as functions in Rust.</p>
+<h4 id="4-how-many-files-are-emitted-when-you-run-the-rust-command-rustc-mainrs-on-linux-and-macos"><a class="header" href="#4-how-many-files-are-emitted-when-you-run-the-rust-command-rustc-mainrs-on-linux-and-macos">4. How many files are emitted when you run the Rust command &quot;rustc main.rs&quot; on Linux and macOS?</a></h4>
+<p>One file, namely; main.exe</p>
+<h4 id="5-how-many-files-are-emitted-when-you-run-the-rust-command-rustc-mainrs-on-windows"><a class="header" href="#5-how-many-files-are-emitted-when-you-run-the-rust-command-rustc-mainrs-on-windows">5. How many files are emitted when you run the Rust command &quot;rustc main.rs&quot; on Windows?</a></h4>
+<p>Two files, namely; main.exe &amp; main.pdb</p>
+<h4 id="6-describe-the-mainpdb-file-generated-by-rustc-compilation-command-on-windows"><a class="header" href="#6-describe-the-mainpdb-file-generated-by-rustc-compilation-command-on-windows">6. Describe the main.pdb file generated by &quot;rustc&quot; compilation command on Windows</a></h4>
+<p>It is a file that contains debugging information.</p>
+<h4 id="7-what-is-rusts-build-system-and-package-manager"><a class="header" href="#7-what-is-rusts-build-system-and-package-manager">7. What is Rust's build system and package manager?</a></h4>
+<p>Cargo</p>
+<h4 id="8-as-a-rustacean-what-might-you-use-cargo-for"><a class="header" href="#8-as-a-rustacean-what-might-you-use-cargo-for">8. As a Rustacean, what might you use Cargo for?</a></h4>
+<p>As a tool to manage my Rust project, like;</p>
+<ul>
+<li>building my code (different from compilation)</li>
+<li>downloading the libraries my code would depend on or already depends on</li>
+<li>building libraries my code would depend on or already depends on</li>
+</ul>
+<h4 id="9-what-are-libraries-that-your-code-depend-on-called"><a class="header" href="#9-what-are-libraries-that-your-code-depend-on-called">9. What are libraries that your code depend on called?</a></h4>
+<p>dependencies</p>
+<h4 id="10-how-do-you-check-for-cargo-installment-on-your-machine"><a class="header" href="#10-how-do-you-check-for-cargo-installment-on-your-machine">10. How do you check for Cargo installment on your machine?</a></h4>
+<p>By applying command:</p>
+<pre><code>$ cargo --version
+</code></pre>
+<p>If you get a Cargo version number, it means you have Cargo installed, whereas you'll get an error if you do not have it installed.</p>
+<h4 id="11-what-files-does-the-cargo-command-cargo-new-project-name-generate"><a class="header" href="#11-what-files-does-the-cargo-command-cargo-new-project-name-generate">11. What files does the Cargo command &quot;cargo new project-name&quot; generate?</a></h4>
+<p>Three files;</p>
+<ul>
+<li>Cargo.toml</li>
+<li>.gitignore</li>
+<li>main.rs nested inside a 'src' top-level folder of your project</li>
+</ul>
+<h4 id="12-how-do-you-override-the-behavior-of-cargo-new-project-name-generating-a-gitignore-file"><a class="header" href="#12-how-do-you-override-the-behavior-of-cargo-new-project-name-generating-a-gitignore-file">12. How do you override the behavior of &quot;cargo new project-name&quot; generating a '.gitignore' file?</a></h4>
+<p>By running the Cargo command;</p>
+<pre><code>$ cargo new --vcs=git
+</code></pre>
+<h4 id="13-what-does-the-toml-suffix-of-the-generated-cargotoml-file-mean"><a class="header" href="#13-what-does-the-toml-suffix-of-the-generated-cargotoml-file-mean">13. What does the 'TOML' suffix of the generated 'Cargo.toml' file mean?</a></h4>
+<p>It means &quot;Tom's Obvious, Minimal Language. It is a file format.</p>
+<h4 id="14-what-are-packages-of-code-in-rust-referred-to"><a class="header" href="#14-what-are-packages-of-code-in-rust-referred-to">14. What are packages of code in Rust referred to?</a></h4>
+<p>crates</p>
+<h4 id="15-what-example-type-of-files-can-be-contained-inside-your-top-level-project-directory-alongside-the-src-folder-and-cargos-cargotoml-file"><a class="header" href="#15-what-example-type-of-files-can-be-contained-inside-your-top-level-project-directory-alongside-the-src-folder-and-cargos-cargotoml-file">15. What example type of files can be contained inside your top-level project directory alongside the 'src' folder and Cargo's &quot;Cargo.toml&quot; file?</a></h4>
+<p>README files, license information, configuration files, and anything else not related to your code.</p>
+<h4 id="16-where-does-cargo-expect-your-code-files-to-live-in"><a class="header" href="#16-where-does-cargo-expect-your-code-files-to-live-in">16. Where does Cargo expect your code files to live in?</a></h4>
+<p>Inside the &quot;src&quot; folder inside your top-level project directory.</p>
+<h4 id="17-where-does-the-cargo-command-cargo-build-store-the-resulting-compilation-or-executable"><a class="header" href="#17-where-does-the-cargo-command-cargo-build-store-the-resulting-compilation-or-executable">17. Where does the Cargo command &quot;cargo build&quot; store the resulting compilation or executable?</a></h4>
+<p>On Windows, it is: &quot;.target\debug\project_name.exe&quot;
+On macOS, it is: &quot;.target/debug/project_name.exe&quot;</p>
+<h4 id="18-what-additional-new-file-does-running-cargo-command-cargo-build-for-the-first-time-create-inside-your-top-level-project-directory"><a class="header" href="#18-what-additional-new-file-does-running-cargo-command-cargo-build-for-the-first-time-create-inside-your-top-level-project-directory">18. What additional new file does running Cargo command &quot;cargo build&quot; for the first time create inside your top-level project directory?</a></h4>
+<p>Cargo.lock</p>
+<h4 id="19-what-is-the-cargolock-file-about"><a class="header" href="#19-what-is-the-cargolock-file-about">19. What is the &quot;Cargo.lock&quot; file about?</a></h4>
+<p>It keeps track of the exact versions of dependencies in your project for you automatically.</p>
+<h4 id="20-what-does-the-command-cargo-run-do-for-you"><a class="header" href="#20-what-does-the-command-cargo-run-do-for-you">20. What does the command &quot;cargo run&quot; do for you?</a></h4>
+<p>It first builds or rebuild your Rust cargo projects, and then run the generated executable of it</p>
+<h4 id="21-why-would-you-consistently-run-the-cargo-command-cargo-check"><a class="header" href="#21-why-would-you-consistently-run-the-cargo-command-cargo-check">21. Why would you consistently run the Cargo command' &quot;cargo check&quot;?</a></h4>
+<p>To continually check your work while writing the code, to make sure your program compiles, hence telling you that you have made no mistakes that would lead to a failed compilation process</p>
+<h4 id="22-what-does-cargo-command-cargo-check-do"><a class="header" href="#22-what-does-cargo-command-cargo-check-do">22. What does Cargo command &quot;cargo check&quot; do?</a></h4>
+<p>It perfoms type checking, analysis, and linting of your code. Technically, &quot;cargo check&quot; computes only the crate metadata, which consists of the public signarures of items in the crate (but no, e.g. the bodies of functions).</p>
+<h4 id="23-what-cargo-command-do-you-use-to-build-an-executable-that-is-most-suitable-and-optimized-for-release"><a class="header" href="#23-what-cargo-command-do-you-use-to-build-an-executable-that-is-most-suitable-and-optimized-for-release">23. What Cargo command do you use to build an executable that is most suitable and optimized for release?</a></h4>
+<pre><code>$ cargo build --release
+</code></pre>
+<h4 id="24-demonstrate-a-chain-of-commands-git-and-cargo-commands-which-you-can-use-to-clone-a-rust-project-from-github-or-any-other-vcs-and-then-build-the-project-locally-on-your-machine"><a class="header" href="#24-demonstrate-a-chain-of-commands-git-and-cargo-commands-which-you-can-use-to-clone-a-rust-project-from-github-or-any-other-vcs-and-then-build-the-project-locally-on-your-machine">24. Demonstrate a chain of commands (Git and Cargo commands), which you can use to clone a Rust project from GitHub or any other VCS, and then build the project locally on your machine</a></h4>
+<pre><code>$ git clone example-vcs.org/someproject
+$ cd someproject
+$ cargo build
+</code></pre>
+<p>Completed On: Tuesday, May 3, 2022.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_1/chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_3/chapter_3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_1/chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_3/chapter_3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

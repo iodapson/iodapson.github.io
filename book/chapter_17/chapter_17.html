@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>More about Cargo and crates.io - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html" class="active"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="more-about-cargo-and-cratesio"><a class="header" href="#more-about-cargo-and-cratesio">More about Cargo and crates.io</a></h1>
+<h4 id="1-what-are-release-profiles-in-rust"><a class="header" href="#1-what-are-release-profiles-in-rust">1. What are release profiles in Rust?</a></h4>
+<p>They are predefined and customizable profiles with different configurations that allow a programmer to have control over various options for compiling code. Each profile is configured independently of the others.</p>
+<h4 id="2-what-are-the-two-main-profiles-that-cargo-has"><a class="header" href="#2-what-are-the-two-main-profiles-that-cargo-has">2. What are the two main profiles that Cargo has?</a></h4>
+<ul>
+<li>build (when you run 'cargo build'), which has good defaults for development.</li>
+<li>release (when you run 'cargo build --release') which has good defaults for release builds.</li>
+</ul>
+<h4 id="3-how-can-you-override-any-subset-of-the-default-settings-of-a-profile"><a class="header" href="#3-how-can-you-override-any-subset-of-the-default-settings-of-a-profile">3. How can you override any subset of the default settings of a profile?</a></h4>
+<p>By adding a [profile.*] section in your Rust project's Cargo.toml file.</p>
+<h4 id="4-showcase-an-example-where-you-override-a-default-setting-in-both-dev-and-release-profiles"><a class="header" href="#4-showcase-an-example-where-you-override-a-default-setting-in-both-dev-and-release-profiles">4. Showcase an example where you override a default setting in both dev and release profiles</a></h4>
+<p>Filename: Cargo.toml</p>
+<pre><code>[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+</code></pre>
+<h4 id="5-what-is-a-documentation-comment"><a class="header" href="#5-what-is-a-documentation-comment">5. What is a documentation comment?</a></h4>
+<p>They are comments that will generate an HTML display of documentation for public API items in your code so programmers can know how to use your crate as opposed to how your crate is implemented.</p>
+<h4 id="6-how-do-you-write-a-documentation-comment-in-rust"><a class="header" href="#6-how-do-you-write-a-documentation-comment-in-rust">6. How do you write a documentation comment in Rust?</a></h4>
+<p>By using three slashes <code>///</code>.
+You create headers with the # character, and you annotate demo code with an opening and closing pair of triple ticks (```)</p>
+<h4 id="7-create-a-sample-documentation-comment"><a class="header" href="#7-create-a-sample-documentation-comment">7. Create a sample documentation comment</a></h4>
+<p>Here:</p>
+<pre><code>  /// Adds one to the number given.
+  ///
+  /// # Examples
+  ///
+  /// ```
+  /// let arg = 5;
+  /// let answer = my_crate::add_one(arg);
+  ///
+  /// assert_eq!(6, answer);
+  /// ```
+  pub fn add_one(x: i32) -&gt; i32 {
+    x + 1
+  }
+</code></pre>
+<h4 id="8-what-cargo-command-do-you-use-to-actually-generate-html-documentation-from-a-documentation-comment"><a class="header" href="#8-what-cargo-command-do-you-use-to-actually-generate-html-documentation-from-a-documentation-comment">8. What Cargo command do you use to actually generate HTML documentation from a documentation comment?</a></h4>
+<p><code>$ cargo doc</code></p>
+<h4 id="9-what-cargo-command-option-do-you-use-to-generate-and-open-html-documentation-from-a-documentation-command"><a class="header" href="#9-what-cargo-command-option-do-you-use-to-generate-and-open-html-documentation-from-a-documentation-command">9. What Cargo command option do you use to generate and open HTML documentation from a documentation command?</a></h4>
+<p><code>$ cargo doc --open</code></p>
+<h4 id="10-mention-three-sections-you-may-want-to-create-in-your-documention-comment-to-provide-a-more-comprehensive-documentation-coverage-of-how-to-use-your-code"><a class="header" href="#10-mention-three-sections-you-may-want-to-create-in-your-documention-comment-to-provide-a-more-comprehensive-documentation-coverage-of-how-to-use-your-code">10. Mention three sections you may want to create in your documention comment to provide a more comprehensive documentation coverage of how to use your code</a></h4>
+<ul>
+<li>Panics. Discus scenerios in which the function being documented could panic</li>
+<li>Errors: If the function returns Result, describe the kind of errors that may occur, what could provoke such error(s), and possible optimal ways to handle them.</li>
+<li>Safety - unsafe functions could have an explaination why they are unsafe, and the invariants of their call stated.</li>
+</ul>
+<h4 id="11-what-happens-to-demo-code-inside-a-documentation-comment-when-you-run-cargo-command-cargo-test"><a class="header" href="#11-what-happens-to-demo-code-inside-a-documentation-comment-when-you-run-cargo-command-cargo-test">11. What happens to demo code inside a documentation comment when you run Cargo command 'cargo test'?</a></h4>
+<p>It would run the demo code as a test as well.</p>
+<h4 id="12-what-documentation-comment-syntax-do-you-use-to-specify-documentation-for-only-a-specify-item-that-follows-the-last-occurence-of-it"><a class="header" href="#12-what-documentation-comment-syntax-do-you-use-to-specify-documentation-for-only-a-specify-item-that-follows-the-last-occurence-of-it">12. What documentation comment syntax do you use to specify documentation for only a specify item that follows the last occurence of it?</a></h4>
+<p>'//!', as in:
+//!
+This means that an item that occurs after the last occurrence of //! gets documented.</p>
+<h4 id="13-what-kind-of-documentation-is-especially-suited-for-documenting-a-crate-as-a-whole-or-a-module"><a class="header" href="#13-what-kind-of-documentation-is-especially-suited-for-documenting-a-crate-as-a-whole-or-a-module">13. What kind of documentation is especially suited for documenting a crate as a whole, or a module?</a></h4>
+<p>//!
+Use them to explain the overall purpose of the container to help your users understand the crate's organization.</p>
+<h4 id="14-demonstrate-code-that-has--documentation-comment-used-in-conjuction-with-the--documentation-comment"><a class="header" href="#14-demonstrate-code-that-has--documentation-comment-used-in-conjuction-with-the--documentation-comment">14. Demonstrate code that has //! documentation comment used in conjuction with the /// documentation comment</a></h4>
+<p>Here:</p>
+<pre><code>  //! #My Crate
+  //!
+  //! `my_crate` is a collection of uitlities to make performing certain
+  //! calculations more convenient.
+
+  /// Adds one to the number given.
+  // --snip--
+  ///
+  /// # Examples
+  ///
+  /// ```
+  /// let arg = 5;
+  /// let answer = my_crate::add_one(arg);
+  ///
+  /// assert_eq!(6, answer);
+  /// ```
+  pub fn add_one(x: i32) -&gt; i32 {
+    x + 1
+  }
+</code></pre>
+<h4 id="15-why-would-you-apply-pub-use-to-your-code-to-help-developers-understand-how-to-use-your-library-code-for-example"><a class="header" href="#15-why-would-you-apply-pub-use-to-your-code-to-help-developers-understand-how-to-use-your-library-code-for-example">15. Why would you apply 'pub use' to your code to help developers understand how to use your library code, for example?</a></h4>
+<p>So you can re-export pieces of your code to the public to see at first glance when they run 'cargo doc --open'. This would utimately show them how to use your code since your code's structure is exposed to them at first glance. In addition, they now have access to deeply nested pieces right from top-level modules.</p>
+<h4 id="16-demonstrate-code-snippet-that-uses-the-pub-use-syntax"><a class="header" href="#16-demonstrate-code-snippet-that-uses-the-pub-use-syntax">16. Demonstrate code snippet that uses the 'pub use' syntax</a></h4>
+<p>Here, inside Filename - src/lib.rs:</p>
+<pre><code>  //! # Art
+  //!
+  //! A library for modeling artistic concepts
+  pub use self::kinds::PrimaryColor;
+  pub use self::kinds::SecondaryColor;
+  pub use self::utils::mix;
+  pub mod kinds {
+    /// The primary colors according to the RYB color model.
+    pub enum PrimaryColor {
+      Red,
+      Yellow,
+      Blue,
+    }
+    /// The secondary colors according to the RYB color model.
+    pub enum SecondaryColor {
+      Orange,
+      Green,
+      Purple,
+    }
+  }
+  pub mod utils {
+    use crate::kinds::*;
+    /// Combines two primary colors in equal amounts to create a secondary color.
+    pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -&gt; SecondaryColor {
+      // --snip--
+  }
+</code></pre>
+<p>Now with this structure above, in file 'lib.rs', you can make use of nested function 'mix', and struct 'PrimaryColor' like as if they are top-level code, as done below:</p>
+<pre><code>  // Inside file - src/main.rs
+  use art::mix;
+  use art::PrimaryColor;
+  fn main() {
+    // --snip--
+  }
+</code></pre>
+<p><b>N.B:</b>
+In cases wher there are many nested modules, re-exporting the types at the top level with 'pub use' can make a significant differnece in the experience of people who use the crate.</p>
+<h4 id="17-what-steps-are-to-be-followed-to-create-a-cratesio-account-login-to-it-and-then-ultimately-publish-a-project-to-cratesio"><a class="header" href="#17-what-steps-are-to-be-followed-to-create-a-cratesio-account-login-to-it-and-then-ultimately-publish-a-project-to-cratesio">17. What steps are to be followed to create a crates.io account, login to it, and then ultimately publish a project to crates.io</a></h4>
+<ul>
+<li>Create an account at crates.io using a GitHub account</li>
+<li>Retrieve your craite.io API key from https://crates.io/me/</li>
+<li>Login to your crate.io account using the Cargo command;
+<code>$ cargo login &lt;your_api_key_goes_here&gt;</code></li>
+<li>Add the required metadata to Cargo.toml under [package]</li>
+<li>Run Cargo command 'cargo publish'</li>
+</ul>
+<p><b>N.B:</b>
+As with other API keys, you should also keep your crates.io API key private.
+You also have to make sure your project name under [package] in your Cargo.toml file is unique in crates.io.</p>
+<h4 id="18-what-are-some-common-metadata-you-should-include-inside-your-projects-cargotoml-file-under-its-package-section-before-publishing-it-to-cratesio"><a class="header" href="#18-what-are-some-common-metadata-you-should-include-inside-your-projects-cargotoml-file-under-its-package-section-before-publishing-it-to-cratesio">18. What are some common metadata you should include inside your project's Cargo.toml file under its [package] section before publishing it to crates.io?</a></h4>
+<ul>
+<li>name</li>
+<li>version</li>
+<li>edition</li>
+<li>description</li>
+<li>license
+Note that if your preferred license is not included in the Software Package Data Exchange (SPDX) [http://spdx.org/licenses/] list, then you must include the license content as a file inside your project's top-level folder, and then have using property 'license-pair' instead of 'license' to specify the license file name, as its value.</li>
+</ul>
+<h4 id="19-list-example-meta-data-for-a-project-required-for-a-sample-guessing_game-rust-project-to-be-published-on-cratesio"><a class="header" href="#19-list-example-meta-data-for-a-project-required-for-a-sample-guessing_game-rust-project-to-be-published-on-cratesio">19. List example meta-data for a project required for a sample guessing_game Rust project to be published on crates.io</a></h4>
+<p>Here:</p>
+<pre><code>[package]
+name = &quot;guessing_game&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+description = &quot;A fun game where you guess what number the computer has chosen.&quot;
+license = &quot;MIT OR Apache-2.0&quot;
+</code></pre>
+<p><b>N.B:</b>
+Notice how OR was used to specify more than one license for the project.</p>
+<h4 id="20-what-do-you-do-to-publish-a-new-version-of-your-existing-published-crate"><a class="header" href="#20-what-do-you-do-to-publish-a-new-version-of-your-existing-published-crate">20. What do you do to publish a new version of your existing published crate?</a></h4>
+<p>Simply change the 'version' property value specified in your Cargo.toml file and republish (using Cargo command 'cargo publish'), using the Semantic Versioning rules.</p>
+<h4 id="21-what-do-you-do-to-prevent-someones-future-project-from-adding-a-specific-version-of-your-crate-as-a-new-dependency"><a class="header" href="#21-what-do-you-do-to-prevent-someones-future-project-from-adding-a-specific-version-of-your-crate-as-a-new-dependency">21. What do you do to prevent someone's future project from adding a specific version of your crate as a new dependency?</a></h4>
+<p>By using the 'cargo yank' command. For example, like this;
+<code>$ cargo yank --vers 1.0.1</code>
+The above command yanks version 1.0.1 of the project, thus preventing other projects from depending on it moving forward.</p>
+<h4 id="22-what-do-you-undo-a-yanked-version-of-a-rust-project"><a class="header" href="#22-what-do-you-undo-a-yanked-version-of-a-rust-project">22. What do you undo a yanked version of a Rust project?</a></h4>
+<p><code>$ cargo yank --vers 1.0.1 --undo</code></p>
+<p><b>N.B:</b>
+A yank does not delete any code. For exampl, the yank feature is not intended for deleting accidentally uploaded secrets. If that happens, you must reset those secrets immediately.</p>
+<h4 id="23-what-is-a-workspace"><a class="header" href="#23-what-is-a-workspace">23. What is a workspace?</a></h4>
+<p>It is a set of packages that share the same 'Cargo.lock' and output directory.</p>
+<h4 id="24-why-would-you-want-to-use-workspaces"><a class="header" href="#24-why-would-you-want-to-use-workspaces">24. Why would you want to use workspaces?</a></h4>
+<p>Because as your Rust project develops, you might find that the library crate of your project continues to get bigger and you want to split up your package further into multiple library crates.</p>
+<h4 id="25-what-are-the-steps-to-follow-in-creating-a-rust-workspace"><a class="header" href="#25-what-are-the-steps-to-follow-in-creating-a-rust-workspace">25. What are the steps to follow in creating a Rust workspace</a></h4>
+<ul>
+<li>
+<p>First, create a directory that would serve as the workspace directory</p>
+<pre><code>$ mkdir workspace_dir_name
+$ cd workspace_dir_name
+</code></pre>
+</li>
+<li>
+<p>Second, create a 'Cargo.toml' file inside the 'workspace_dir_name' directory.
+Note that this time, the 'Cargo.toml' will have a [workspace] section, but not have a [package] section</p>
+</li>
+<li>
+<p>Third, add the sub-cargo project names (one binary crate, and as many library crates as required) that will be contained inside the 'workspace_dir_name', like so;</p>
+<pre><code>[workspace]
+members = [
+  &quot;member_project_one&quot;,
+  &quot;member_project_two&quot;,
+]
+</code></pre>
+</li>
+<li>
+<p>Fourth, create the sub-cargo projects whose names you added as members inside the workspace_dir_name's Cargo.toml file. You simply create a normal Cargo project using Cargo command;</p>
+<pre><code>$ cargo new member_project_one
+</code></pre>
+</li>
+</ul>
+<p>to create a binary crate. Ideally, should be just one.</p>
+<p>OR</p>
+<pre><code>$ cargo new memeber_lib_project --lib
+</code></pre>
+<p>..run from the top level folder inside your workspace_dir_name.</p>
+<ul>
+<li>Fifth, run Cargo command;</li>
+</ul>
+<pre><code>$ cargo build
+</code></pre>
+<h4 id="26-what-file-structure-would-be-created-when-you-run-cargo-command-cargo-build-for-the-very-first-time-for-your-cargo-workspace-project"><a class="header" href="#26-what-file-structure-would-be-created-when-you-run-cargo-command-cargo-build-for-the-very-first-time-for-your-cargo-workspace-project">26. What file structure would be created when you run Cargo command 'cargo build' for the very first time for your Cargo workspace project?</a></h4>
+<pre><code>|-Cargo.lock
+|-Cargo.toml
+|-member_project_one
+  |-Cargo.toml
+  |-src
+    |-main.rs
+|-member_project_two
+  |-Cargo.toml
+  |-src
+    |-lib.rs
+|-target
+</code></pre>
+<p>Note that it would not matter where you run 'cargo build' so long as it is either within the top-level folder or a member_project inside your workspace_dir_name directory.</p>
+<h4 id="27-whats-the-relevance-of-the-target-folder-inside-a-workspaces-top-level-folder"><a class="header" href="#27-whats-the-relevance-of-the-target-folder-inside-a-workspaces-top-level-folder">27. What's the relevance of the 'target' folder inside a workspace's top level folder?</a></h4>
+<p>It is where compiled artifacts for your workspace code is placed into.</p>
+<h4 id="28-how-do-you-make-a-binary-crate-of-a-sub-project-member_project_one-inside-a-workspace-utilize-code-from-another-sub-project-crate-member_project_two-a-lib-crate-within-the-same-workspace"><a class="header" href="#28-how-do-you-make-a-binary-crate-of-a-sub-project-member_project_one-inside-a-workspace-utilize-code-from-another-sub-project-crate-member_project_two-a-lib-crate-within-the-same-workspace">28. How do you make a binary crate of a sub-project (member_project_one) inside a workspace, utilize code from another sub-project crate (member_project_two, a lib crate) within the same workspace?</a></h4>
+<p>By updating the Cargo.toml file of the binary crate's sub-project folder to look similar to the following;</p>
+<pre><code>  [dependencies]
+  member_project_two = {path = &quot;../member_project_two&quot;}
+</code></pre>
+<p>..and then add;
+<code>use member_project_two;</code></p>
+<p>..to the member_project_one binary crate's main.rs file.</p>
+<h4 id="29-what-happens-when-you-have-a-dependency-for-example-rand-which-you-specify-in-in-each-member-sub-projects-crates-of-a-workspace-how-does-cargo-handle-member-projects-having-multiple-dependencies-of-the-same-library-crate-rand-from-cratesio"><a class="header" href="#29-what-happens-when-you-have-a-dependency-for-example-rand-which-you-specify-in-in-each-member-sub-projects-crates-of-a-workspace-how-does-cargo-handle-member-projects-having-multiple-dependencies-of-the-same-library-crate-rand-from-cratesio">29. What happens when you have a dependency, for example, 'rand' which you specify in in each member sub-projects (crates) of a workspace. How does Cargo handle member projects having multiple dependencies of the same library crate 'rand' from crates.io?</a></h4>
+<p>Cargo will resolve the versions of rand across member crates of the workspace into one version, and then record that resolved one version of 'rand' in the workspace's Cargo.lock file.
+N.B:
+Even though a dependency might be recorded in a workspace's Cargo.lock file, you still need to explicitly add such dependency into a member crate's cargo.toml file to actually be able to use the dependency in the member crate.</p>
+<h4 id="30-do-member-crates-of-a-workspace-each-have-their-own-cargolock-file"><a class="header" href="#30-do-member-crates-of-a-workspace-each-have-their-own-cargolock-file">30. Do member crates of a workspace each have their own Cargo.lock file?</a></h4>
+<p>No. They only have their own respective Cargo.toml file. Member crates of a workspace get to share only one Cargo.lock file, which will be located at the top-level folder of the workspace directory itself.</p>
+<h4 id="31-what-cargo-command-do-you-use-to-single-out-a-member-crate-in-a-workspace-to-be-run-by-cargo"><a class="header" href="#31-what-cargo-command-do-you-use-to-single-out-a-member-crate-in-a-workspace-to-be-run-by-cargo">31. What Cargo command do you use to single out a member crate in a workspace to be run by Cargo?</a></h4>
+<pre><code>$ cargo run -p name_of_the_member_crate
+</code></pre>
+<h4 id="32-what-cargo-command-do-you-use-to-single-out-a-member-crate-in-a-workspace-to-be-tested-by-cargo"><a class="header" href="#32-what-cargo-command-do-you-use-to-single-out-a-member-crate-in-a-workspace-to-be-tested-by-cargo">32. What Cargo command do you use to single out a member crate in a workspace to be tested by Cargo?</a></h4>
+<pre><code>$ cargo test -p name_of_the_member_crate
+</code></pre>
+<h4 id="33-when-you-wish-to-publish-member-crates-in-a-workspace-is-it-possible-to-publish-the-member-crates-at-once"><a class="header" href="#33-when-you-wish-to-publish-member-crates-in-a-workspace-is-it-possible-to-publish-the-member-crates-at-once">33. When you wish to publish member crates in a workspace, is it possible to publish the member crates at once?</a></h4>
+<p>No since 'cargo publish' does not support '--all' or '-p' flag.</p>
+<h4 id="34-how-do-you-publish-member-crates-in-a-workspace"><a class="header" href="#34-how-do-you-publish-member-crates-in-a-workspace">34. How do you publish member crates in a workspace?</a></h4>
+<p>By publishing them separately. You'll run 'cargo publish' invidividually from each member crate inside the workspace.</p>
+<p><b>N.B:</b>
+As your project grows, consider using a workspace: it's easier to understand smaller, individual components than one big blob of code. Furthermore, keeping the crates in the a workspace can make coordination between them easier if they are often changed at the same time.</p>
+<h4 id="35-you-can-install-packages--cargo-projects-that-dont-have-binary-targets-true-or-false"><a class="header" href="#35-you-can-install-packages--cargo-projects-that-dont-have-binary-targets-true-or-false">35. You can install packages / Cargo projects that don't have binary targets, true or false?</a></h4>
+<p>False. You can only install packages that have binary targets.
+N.B:
+A binary target is a runnable program that is create if the crate/project has a 'src/main.rs' file, or another file specified as a binary, as opposed to a library target that isn't runnable on its own but is suitable for including within other programs.
+Installing binary crates provide a convenient way for Rust developers to install packages that others have shared on crates.io as tools.</p>
+<h4 id="36-where-would-you-typicall-find-information-on-whether-a-particular-crate-has-a-library-target-or-has-a-binary-target-or-has-both"><a class="header" href="#36-where-would-you-typicall-find-information-on-whether-a-particular-crate-has-a-library-target-or-has-a-binary-target-or-has-both">36. Where would you typicall find information on whether a particular crate has a library target, or has a binary target, or has both.</a></h4>
+<h4 id="37-where-are-all-binaries-installed-with-cargo-install-stored"><a class="header" href="#37-where-are-all-binaries-installed-with-cargo-install-stored">37. Where are all binaries installed with 'cargo install' stored?</a></h4>
+<p>In the installation root's 'bin' folder.
+If you installed Rust using rustup.rs and don't have any custom configurations, this directory will be $HOME/.cargo/bin.
+Ensure that directory '$HOME/.cargo/bin' is in your $PATH to be able to run programs you've installed with 'cargo install'.
+After installing a crate, e.g, 'installed_example_crate', and the installation directory of 'installed_example_crate' is in your $PATH,  you can now use the crate by calling its name directly. Here's a demo:
+<code>$ cargo install installed_example_crate` `$ installed_example_crate --help</code></p>
+<h4 id="38-what-cargo-command-can-you-use-to-list-the-cargo-command-variants-available-to-you"><a class="header" href="#38-what-cargo-command-can-you-use-to-list-the-cargo-command-variants-available-to-you">38. What Cargo command can you use to list the Cargo command variants available to you?</a></h4>
+<p><code>$ cargo --list</code></p>
+<p>Completed On: Sunday, June 19, 2022. 05:15PM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_16/chapter_16.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_18/chapter_18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_16/chapter_16.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_18/chapter_18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

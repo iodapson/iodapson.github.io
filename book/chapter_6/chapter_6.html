@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Understanding Ownership - Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../chapter_1/chapter_1.html"><strong aria-hidden="true">1.</strong> Rust Overview</a></li><li class="chapter-item expanded "><a href="../chapter_2/chapter_2.html"><strong aria-hidden="true">2.</strong> Rust Cargo</a></li><li class="chapter-item expanded "><a href="../chapter_3/chapter_3.html"><strong aria-hidden="true">3.</strong> Variables and Mutability, Data Types</a></li><li class="chapter-item expanded "><a href="../chapter_4/chapter_4.html"><strong aria-hidden="true">4.</strong> Functions, Comments, Control Flow</a></li><li class="chapter-item expanded "><a href="../chapter_5/chapter_5.html"><strong aria-hidden="true">5.</strong> Programming a 'Guess the number Game'</a></li><li class="chapter-item expanded "><a href="../chapter_6/chapter_6.html" class="active"><strong aria-hidden="true">6.</strong> Understanding Ownership</a></li><li class="chapter-item expanded "><a href="../chapter_7/chapter_7.html"><strong aria-hidden="true">7.</strong> References and Borrowing, The Slice data type</a></li><li class="chapter-item expanded "><a href="../chapter_8/chapter_8.html"><strong aria-hidden="true">8.</strong> Using Structs to structure related data</a></li><li class="chapter-item expanded "><a href="../chapter_9/chapter_9.html"><strong aria-hidden="true">9.</strong> Enums and Pattern matching</a></li><li class="chapter-item expanded "><a href="../chapter_10/chapter_10.html"><strong aria-hidden="true">10.</strong> Managing Growing Projects with Packages, Crates, and Module</a></li><li class="chapter-item expanded "><a href="../chapter_11/index.html"><strong aria-hidden="true">11.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-1.html"><strong aria-hidden="true">11.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-2.html"><strong aria-hidden="true">11.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item expanded "><a href="../chapter_11/chapter_11-3.html"><strong aria-hidden="true">11.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="../chapter_12/chapter_12.html"><strong aria-hidden="true">12.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="../chapter_13/chapter_13.html"><strong aria-hidden="true">13.</strong> Generic Types, Traits, and Lifetimes</a></li><li class="chapter-item expanded "><a href="../chapter_14/chapter_14.html"><strong aria-hidden="true">14.</strong> Writing automated tests</a></li><li class="chapter-item expanded "><a href="../chapter_15/chapter_15.html"><strong aria-hidden="true">15.</strong> Bonus chap (Command Line project chapter)</a></li><li class="chapter-item expanded "><a href="../chapter_16/chapter_16.html"><strong aria-hidden="true">16.</strong> Functional language features - Closures and Iterators</a></li><li class="chapter-item expanded "><a href="../chapter_17/chapter_17.html"><strong aria-hidden="true">17.</strong> More about Cargo and crates.io</a></li><li class="chapter-item expanded "><a href="../chapter_18/chapter_18.html"><strong aria-hidden="true">18.</strong> Smart Pointers</a></li><li class="chapter-item expanded "><a href="../chapter_19/chapter_19.html"><strong aria-hidden="true">19.</strong> Fearless Concurrency</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust drills, all based on &#x27;The Book&#x27; - the official Rust Programming Language book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="understanding-ownership"><a class="header" href="#understanding-ownership">Understanding Ownership</a></h1>
+<h4 id="1-what-is-ownership-in-rust"><a class="header" href="#1-what-is-ownership-in-rust">1. What is &quot;Ownership&quot; in Rust?</a></h4>
+<p>Ownership is a set of rules that governs how a Rust program manages memory.
+Note: All programs have to manage the way they use a computer's memory while running.</p>
+<h4 id="2-how-is-data-stored-on-the-stack-accessed"><a class="header" href="#2-how-is-data-stored-on-the-stack-accessed">2. How is data stored on the stack, accessed?</a></h4>
+<p>The access data in reverse order. That is, the first data you put in to your stack gets out last. This order is known as 'LIFO'.</p>
+<h4 id="3-what-is-the-addition-of-data-into-the-stack-known-as-or-called"><a class="header" href="#3-what-is-the-addition-of-data-into-the-stack-known-as-or-called">3. What is the addition of data into the stack known as, or called?</a></h4>
+<p>'pushing into the stack'</p>
+<h4 id="4-what-is-the-removal-of-data-out-of-the-stack-known-as-or-called"><a class="header" href="#4-what-is-the-removal-of-data-out-of-the-stack-known-as-or-called">4. What is the removal of data out of the stack known as, or called?</a></h4>
+<p>'popping off the stack'.</p>
+<h4 id="5-how-is-data-stored-in-the-heap-memory"><a class="header" href="#5-how-is-data-stored-in-the-heap-memory">5. How is data stored in the heap memory?</a></h4>
+<p>In a first in, first out order, otherwise known as FIFO (First In, First Out).</p>
+<h4 id="6-what-is-the-difference-between-stack-memory-and-heap-memory-in-terms-of-how-flexible-their-storage-is"><a class="header" href="#6-what-is-the-difference-between-stack-memory-and-heap-memory-in-terms-of-how-flexible-their-storage-is">6. What is the difference between stack memory and heap memory in terms of how flexible their storage is?</a></h4>
+<ul>
+<li>Stack: Data stored on the stack must have a known, fixed size.</li>
+<li>Stack: Data is organized.</li>
+<li>Heap: Data stored on the heap can be unknown and have a variable size.</li>
+<li>Heap: Data is unorganized.</li>
+</ul>
+<h4 id="7-how-can-data-be-shared-inside-the-stack-and-the-heap-coherently"><a class="header" href="#7-how-can-data-be-shared-inside-the-stack-and-the-heap-coherently">7. How can data be shared inside the stack and the heap coherently?</a></h4>
+<p>Since data stored on the heap returns a pointer by the memory allocator after it finds and mark an approximately big enough space, you can then store the pointer to a data inside a stack.</p>
+<h4 id="8-why-is-pushing-data-to-the-stack-faster-than-allocating-on-the-heap"><a class="header" href="#8-why-is-pushing-data-to-the-stack-faster-than-allocating-on-the-heap">8. Why is pushing data to the stack faster than allocating on the heap?</a></h4>
+<p>Because the allocator never has to search for a place to store new data (that location is always at the top of the stack). Whereas, allocating space on the heap requires more work, because the allocator must first find a big enough space to hold the data, and then perform bookkeeping to prepare for the next allocation.</p>
+<h4 id="9-why-is-accessing-data-in-the-heap-slower-than-accessing-data-on-the-stack"><a class="header" href="#9-why-is-accessing-data-in-the-heap-slower-than-accessing-data-on-the-stack">9. Why is accessing data in the heap slower than accessing data on the stack?</a></h4>
+<p>Because you have to follow a pointer to get there.
+Contemporary processors are faster if they jump around less in memory.</p>
+<h4 id="10-where-are-values-passed-into-a-function-including-pointers-to-data-on-the-heap-and-function-local-variables-stored"><a class="header" href="#10-where-are-values-passed-into-a-function-including-pointers-to-data-on-the-heap-and-function-local-variables-stored">10. Where are values passed into a function, including pointers to data on the heap, and function local variables stored?</a></h4>
+<p>On the stack.
+And once they are no longer needed, they get popped off the stack.</p>
+<h4 id="11-what-problems-does-rusts-ownership-concept-address"><a class="header" href="#11-what-problems-does-rusts-ownership-concept-address">11. What problems does Rust's &quot;Ownership&quot; concept address?</a></h4>
+<ul>
+<li>Keeping track of what parts of code are using what data on the heap.</li>
+<li>Minimizing the amount of duplicate data on the heap.</li>
+<li>Cleaning up unused data on the heap so you don't run out of space.
+NB:
+Once you understand ownership, you won't need to think about the stack and heap very often, but knowing that the main purpose of ownership is to manage heap data can help explain why it works the way it does.</li>
+</ul>
+<h4 id="12-what-is-a-scope"><a class="header" href="#12-what-is-a-scope">12. What is a scope?</a></h4>
+<p>A scope is the range within a program for which an item is valid.</p>
+<h4 id="13-mention-the-three-fundamental-rules-of-ownership"><a class="header" href="#13-mention-the-three-fundamental-rules-of-ownership">13. Mention the three fundamental rules of 'Ownership'</a></h4>
+<ul>
+<li>Each value in Rust has a variable that is called its &quot;owner&quot;.</li>
+<li>There can only be one owner at a time.</li>
+<li>When the owner goes out of scope, the value will be dropped.</li>
+</ul>
+<h4 id="14-what-example-data-type-is-stored-on-the-heap"><a class="header" href="#14-what-example-data-type-is-stored-on-the-heap">14. What example data type is stored on the heap?</a></h4>
+<p>String.</p>
+<h4 id="15-demonstate-code-that-creates-a-string-from-a-string-literal"><a class="header" href="#15-demonstate-code-that-creates-a-string-from-a-string-literal">15. Demonstate code that creates a &quot;String&quot; from a string literal?</a></h4>
+<p>Here:</p>
+<pre><code>let s = String::from(&quot;I am the string literal);
+</code></pre>
+<p>Another example:</p>
+<pre><code>let mut s = String::from(&quot;a string literal&quot;);
+</code></pre>
+<h4 id="16-demonstrate-code-syntax-that-mutates-a-string-created-from-a-string-literal"><a class="header" href="#16-demonstrate-code-syntax-that-mutates-a-string-created-from-a-string-literal">16. Demonstrate code syntax that mutates a String created from a string literal</a></h4>
+<p>Here:</p>
+<pre><code>let mut s = String::from(&quot;string literal&quot;);
+s.push_str(&quot;, but now mutable&quot;);
+</code></pre>
+<h4 id="17-why-can-a-string-be-mutated-but-string-literals-cannot"><a class="header" href="#17-why-can-a-string-be-mutated-but-string-literals-cannot">17. Why can a String be mutated, but string literals cannot?</a></h4>
+<p>Because string literals have a known data size at compile time, is hardcoded directly into the final execuatable.
+Whereas, a String's data size has to be requested from the memory allocator at runtime using the syntax &quot;String::from()&quot;, after which it is then stored on the heap.</p>
+<h4 id="18-what-is-the-two-step-process-for-storing-data-on-the-heap"><a class="header" href="#18-what-is-the-two-step-process-for-storing-data-on-the-heap">18. What is the two step process for storing data on the heap?</a></h4>
+<ul>
+<li>Requesting an approximate memory from the memory allocator at runtime.</li>
+<li>Returning the approximated memory to the allocator when you're done with the data stored on the approximate memory.</li>
+</ul>
+<h4 id="19-with-regards-to-the-two-step-process-for-storing-data-on-the-heap-explain-what-happens-when-you-create-an-immutable-string-value-from-a-string-literal"><a class="header" href="#19-with-regards-to-the-two-step-process-for-storing-data-on-the-heap-explain-what-happens-when-you-create-an-immutable-string-value-from-a-string-literal">19. With regards to the two step process for storing data on the heap, explain what happens when you create an immutable String value from a string literal</a></h4>
+<ul>
+<li>The first part is done by you the programmer, ie, requesting memory from the memory allocator at runtime, by virtue of using syntax
+&quot;String::from()&quot;.</li>
+<li>The second step is done by Rust for you, ie, the return of the allocated memory to the memory allocator when you're done with the String value/data, by virtue of going/running out of scope.</li>
+</ul>
+<h4 id="20-what-does-rust-automatically-do-when-a-data-or-variable-runs-out-of-its-scope"><a class="header" href="#20-what-does-rust-automatically-do-when-a-data-or-variable-runs-out-of-its-scope">20. What does Rust automatically do when a data or variable runs out of its scope?</a></h4>
+<p>It calls a special function called &quot;drop&quot;.</p>
+<h4 id="21-what-do-you-do-when-you-want-to-seize-control-of-step-2-of-the-process-of-storing-data-on-the-heap-which-is-returning-allocated-data-back-to-the-allocator-when-the-data-occupying-the-allocated-memory-runs-out-of-its-scope"><a class="header" href="#21-what-do-you-do-when-you-want-to-seize-control-of-step-2-of-the-process-of-storing-data-on-the-heap-which-is-returning-allocated-data-back-to-the-allocator-when-the-data-occupying-the-allocated-memory-runs-out-of-its-scope">21. What do you do when you want to seize control of step 2 of the process of storing data on the heap (which is returning allocated data back to the allocator when the data occupying the allocated memory runs out of its scope)?</a></h4>
+<p>By calling the special function &quot;drop&quot; manually and then write the code to return the memory.</p>
+<h4 id="22-in-c-the-pattern-of-deallocating-resources-at-the-end-of-an-items-lifetime-is-sometimes-called-what"><a class="header" href="#22-in-c-the-pattern-of-deallocating-resources-at-the-end-of-an-items-lifetime-is-sometimes-called-what">22. In C++, the pattern of deallocating resources at the end of an item's lifetime is sometimes called what?</a></h4>
+<p>'Resource Acquisition Is Initialization (RAII).
+N.B:
+The drop function in Rust will be familiar to you if you've used RAII patterns.</p>
+<h4 id="23-a-string-value-is-made-up-three-parts-list-them"><a class="header" href="#23-a-string-value-is-made-up-three-parts-list-them">23. A String value is made up three parts, list them</a></h4>
+<ul>
+<li>A pointer 'ptr' to the memory that holds the contents of the string</li>
+<li>A length 'len'
+&amp;</li>
+<li>A capacity.
+N.B:
+The ptr, len, and capacity are stored together on the stack, while the data itself that the pointer points to, is stored on the heap.</li>
+</ul>
+<h4 id="24-describe-each-of-the-length-and-capacity-parts-that-a-string-value-is-made-up-of"><a class="header" href="#24-describe-each-of-the-length-and-capacity-parts-that-a-string-value-is-made-up-of">24. Describe each of the length and capacity parts that a String value is made up of</a></h4>
+<ul>
+<li>The length is how much memory the String is currently using, measured in bytes.</li>
+<li>The capacity is the total amount of memory in bytes that the String value has recieved from, or was allocated by the memory allocator.</li>
+</ul>
+<h4 id="25-having-the-concept-of-pointer-length-and-capacity-in-mind-what-happens-when-you-assign-reference-based-data-type-such-as-string-called-s1-to-another-variable-called-s2"><a class="header" href="#25-having-the-concept-of-pointer-length-and-capacity-in-mind-what-happens-when-you-assign-reference-based-data-type-such-as-string-called-s1-to-another-variable-called-s2">25. Having the concept of pointer, length, and capacity in mind, what happens when you assign reference based data type such as String called s1 to another variable called s2?</a></h4>
+<p>The new other variable s2 will copy the pointer, length, and pointer data from the source (copied) variable s1 into its own stack.</p>
+<h4 id="26-becuase-string-s1-and-s2-above-in-no-25-have-their-individual-pointers-pointing-to-the-same-location-memory-location-what-then-happens-when-either-or-both-of-them-go-out-of-scope"><a class="header" href="#26-becuase-string-s1-and-s2-above-in-no-25-have-their-individual-pointers-pointing-to-the-same-location-memory-location-what-then-happens-when-either-or-both-of-them-go-out-of-scope">26. Becuase String s1 and s2 above in no-25 have their individual pointers pointing to the same location (memory location), what then happens when either (or both?) of them go out of scope?</a></h4>
+<p>They will both try to free the same memory, which is a memory safety bug that can lead to memory corruption which can potententially lead to security vulnerabilites.</p>
+<h4 id="25-what-is-the-memory-saftety-bug-in-which-two-variables-try-to-free-the-same-memory-called"><a class="header" href="#25-what-is-the-memory-saftety-bug-in-which-two-variables-try-to-free-the-same-memory-called">25. What is the memory saftety bug in which two variables try to free the same memory called?</a></h4>
+<p>&quot;double free&quot; error.</p>
+<h4 id="26-how-does-rust-avoid-double-free-error"><a class="header" href="#26-how-does-rust-avoid-double-free-error">26. How does Rust avoid double free error?</a></h4>
+<p>By moving variables, which means that whenever you copy a reference based variable, e.g, String s1 to another reference based variable String s2, Rust would hence consider s1 invalid, while s2 remains valid.
+Subsequently if you copy s2 to yet another String s3, then s3 becomes the new valid variable, while s2 will in-turn become invalid too.</p>
+<h4 id="27-what-is-shallow-copying"><a class="header" href="#27-what-is-shallow-copying">27. What is shallow copying?</a></h4>
+<p>Shallow copying is the concept of copying the pointer, length, and capacity associated with a reference based data type, instead of copying the data of the reference based type itself, otherwise known as deep copying.
+Copying string variable s1 to another string variable s2 is an example of shallow copying.</p>
+<h4 id="28-does-rust-automatically-create-deep-copies-of-your-data"><a class="header" href="#28-does-rust-automatically-create-deep-copies-of-your-data">28. Does Rust automatically create deep copies of your data?</a></h4>
+<p>No. Rust will never automatically create deep copies of your data.</p>
+<h4 id="29-what-is-the-implication-or-gain-of-rusts-concept-of-moving-variables"><a class="header" href="#29-what-is-the-implication-or-gain-of-rusts-concept-of-moving-variables">29. What is the implication or gain of Rust's concept of moving variables?</a></h4>
+<p>It means automatic copying of reference variables can be assumed to be inexpensive in terms of runtime performance.</p>
+<h4 id="30-what-syntax-do-you-use-when-you-intend-to-deeply-copy-a-reference-based-data-that-is-copy-both-the-stack-data-ptr-len-cap-and-heap-data-content-data-of-the-reference-based-data"><a class="header" href="#30-what-syntax-do-you-use-when-you-intend-to-deeply-copy-a-reference-based-data-that-is-copy-both-the-stack-data-ptr-len-cap-and-heap-data-content-data-of-the-reference-based-data">30. What syntax do you use when you intend to deeply copy a reference based data, that is, copy both the stack data (ptr, len, cap), and heap data (content data) of the reference based data?</a></h4>
+<p>Here:
+clone()</p>
+<h4 id="31-demonstrate-code-that-makes-a-deep-copy-of-a-reference-based-data-in-this-case-a-string-data"><a class="header" href="#31-demonstrate-code-that-makes-a-deep-copy-of-a-reference-based-data-in-this-case-a-string-data">31. Demonstrate code that makes a deep copy of a reference based data, in this case a String data</a></h4>
+<p>Here:</p>
+<pre><code>let s1 = String::from(&quot;hello&quot;);
+let s2 = s1.clone();
+println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
+</code></pre>
+<p>N.B:
+When you see a call to 'clone', you know that some arbitrary code is being executed and that code may be expensive. It's a visual indicator that something different is going on.</p>
+<h4 id="32-what-trait-can-you-annotate-to-your-code-to-make-it-possible-for-a-types-variable-to-be-still-accessible-after-being-copied-rather-than-simply-being-moved"><a class="header" href="#32-what-trait-can-you-annotate-to-your-code-to-make-it-possible-for-a-types-variable-to-be-still-accessible-after-being-copied-rather-than-simply-being-moved">32. What trait can you annotate to your code to make it possible for a type's variable to be still accessible after being copied, rather than simply being moved?</a></h4>
+<p>Copy.</p>
+<p>N.B: The code must not have implemented the Drop trait. If the code already has the Drop trait implemented, and you annotate it with the Copy trait, then you'd get a compile-time error.</p>
+<h4 id="33-mention-five-data-types-that-implement-the-copy-trait"><a class="header" href="#33-mention-five-data-types-that-implement-the-copy-trait">33. Mention five data types that implement the 'Copy' trait</a></h4>
+<ul>
+<li>All integer types</li>
+<li>The Boolean type, bool, with values true and false</li>
+<li>All the floating point types</li>
+<li>The character type (char)</li>
+<li>Tuples that hold or contain types that implement &quot;Copy&quot;, such as the aforementioned types.</li>
+</ul>
+<h4 id="34-would-passing-data-into-a-function-returning-data-from-a-function-either-have-that-data-moved-or-copied"><a class="header" href="#34-would-passing-data-into-a-function-returning-data-from-a-function-either-have-that-data-moved-or-copied">34. Would passing data into a function, returning data from a function either have that data moved or copied?</a></h4>
+<p>Yes, therefore you should take this into account.</p>
+<h4 id="35-it-can-become-mundane-keeping-track-of-ownerships-whether-your-data-gets-moved-or-copied-therefore-how-can-you-provision-for-moved-data"><a class="header" href="#35-it-can-become-mundane-keeping-track-of-ownerships-whether-your-data-gets-moved-or-copied-therefore-how-can-you-provision-for-moved-data">35. It can become mundane keeping track of ownerships (whether your data gets moved or copied), therefore, how can you provision for moved data?</a></h4>
+<p>By making use of a tuple. The first tuple element can be used to return data back to the source, although, this is not the best course of action.</p>
+<h4 id="36-demonstrate-code-that-simple-returns-a-tuple"><a class="header" href="#36-demonstrate-code-that-simple-returns-a-tuple">36. Demonstrate code that simple returns a tuple</a></h4>
+<p>Here:</p>
+<pre><code>fn main() {
+  let s1 = String::from(&quot;hello&quot;);
+  let (s2, len) = calculate_length(s1);
+  println!(&quot;The length of '{}' is {}.&quot;, s2, len);
+}
+fn calculate_length(s: String) -&gt; (String, usize) {
+  let length = s.len(); // len() returns the length of a String
+  (s, length)
+} // imagine that in this code, you actually return s2 back to s1.
+</code></pre>
+<h4 id="37-what-feature-does-rust-provide-that-lets-you-use-a-value-without-transferring-ownership"><a class="header" href="#37-what-feature-does-rust-provide-that-lets-you-use-a-value-without-transferring-ownership">37. What feature does Rust provide that lets you use a value without transferring ownership?</a></h4>
+<p>references.</p>
+<p>Completed On: Thursday, May 10, 2022. 11:30AM.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_5/chapter_5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../chapter_7/chapter_7.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_5/chapter_5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../chapter_7/chapter_7.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
